@@ -305,7 +305,7 @@
 
     .category-card img {
       width: 100%;
-      height: 100px;
+      height: auto;
       object-fit: cover;
     }
 
@@ -394,10 +394,13 @@
       <img src="https://www.medplusmart.com/media/wysiwyg/Pharmacy.webp" alt="Pharmacy">
       <div class="category-name">Pharmacy</div>
     </div>
-    <div class="category-card">
-      <img src="https://www.medplusmart.com/media/wysiwyg/Diagnostics.webp" alt="Diagnostics">
-      <div class="category-name">Diagnostics</div>
-    </div>
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+        <div class="category-card">
+          <img src="https://assets.technologynetworks.com/production/dynamic/images/content/361005/in-vitro-diagnostics-needs-seismic-change-to-improve-patient-outcomes-and-deliver-economic-benefits-361005-960x540.jpg?cb=11739445" alt="Diagnostics">
+          <div class="category-name">Diagnostics</div>
+        </div>
+      </a>
+      
     <div class="category-card">
       <img src="https://www.medplusmart.com/media/wysiwyg/Doctors.webp" alt="Doctors">
       <div class="category-name">Doctors</div>
@@ -411,7 +414,9 @@
       <div class="category-name">Factory Direct</div>
     </div>
   </div>
-
+<footer>
+    
+</footer>
 
 
     <script>
@@ -492,6 +497,40 @@ function sendOTP() {
             localStorage.removeItem("userLoggedIn");
             location.reload();
         }
+        
     </script>
+    <!-- ===== Footer ===== -->
+    <footer style="background-color: #577594; color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Created By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+      
+  
 </body>
 </html>
