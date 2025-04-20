@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagnostic Tests with Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f8f7;
+      background-image: url("https://static.vecteezy.com/system/resources/previews/049/806/631/non_2x/health-care-concepts-or-medical-technology-blue-background-or-illustration-vector.jpg");
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgb(156, 193, 213);
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      display: block;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>DIAGNOSTIC TESTS BASED ON CONDITION</h1>
+  <br><br>
+  
+
+  <div class="grid" id="testGrid">
+    <!-- Cards inserted here -->
+  </div>
+
+  <script>
+    const testData = [
+      { name: "Health packages", icon: "https://thumbs.dreamstime.com/b/health-icon-well-being-170542918.jpg" },
+      { name: "Anaemia", icon: "https://cdn2.iconfinder.com/data/icons/soleicons-line-vol-2/64/anemia_blood_cell_hemoglobin_oxygen_anaemia_microscopic-512.png" },
+      { name: "Diabetes", icon: "https://www.shutterstock.com/image-vector/blood-sugar-icon-black-line-600nw-2491014205.jpg" },
+      { name: "Heart", icon: "https://cdn-icons-png.flaticon.com/512/8730/8730536.png" },
+      { name: "Liver", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXvu3wQ1f4lmT13NlSqNxqhXYmuaxxIJ_qEw&s" },
+      { name: "Lungs", icon: "https://cdn-icons-png.freepik.com/512/3699/3699480.png" },
+      { name: "Fertility", icon: "https://static.thenounproject.com/png/1235347-200.png" },
+      { name: "Kidney", icon: "https://www.shutterstock.com/image-vector/kidneys-internal-human-organ-icon-260nw-2479477283.jpg" },
+      { name: "Allergy", icon: "https://thumbs.dreamstime.com/z/allergy-icon-beautiful-meticulously-designed-perfect-use-designing-developing-websites-printed-materials-presentations-111629680.jpg" },
+      { name: "Thyroid", icon: "https://cdn-icons-png.freepik.com/512/954/954506.png" },
+      { name: "Vitamins", icon: "https://www.creativefabrica.com/wp-content/uploads/2022/10/25/Vitamins-icon-Graphics-43215170-1.jpg" },
+      { name: "Fever", icon: "https://cdn-icons-png.flaticon.com/512/3781/3781946.png" },
+      { name: "Bone", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2L_fq5N-PdzJKkJCoP1mH9uP8efRq0hypUA&s" },
+      { name: "Immunity", icon: "https://media.istockphoto.com/id/1255907403/vector/bacteria-protection-icon-isolated-on-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=LfZjTd656zLbg0wyE0TkKxgbQtcTaOamDYE_MpBSHtA=" },
+      { name: "Cancer", icon: "https://cdn1.vectorstock.com/i/1000x1000/82/70/cancer-icon-linear-isolated-thin-vector-34848270.jpg" },
+      { name: "Hormones", icon: "https://static.vecteezy.com/system/resources/previews/036/286/535/non_2x/hormone-therapy-icon-with-a-syringe-line-vector.jpg" },
+      { name: "Prostate", icon: "https://www.shutterstock.com/image-vector/enlarged-prostate-icon-line-illustration-260nw-2458497133.jpg" },
+      { name: "Pregnancy", icon: "https://i.pinimg.com/564x/a8/c1/6c/a8c16c43db798d27ad3915eec1b89d19.jpg" },
+      { name: "HIV", icon: "https://static-00.iconduck.com/assets.00/hiv-icon-2048x2048-okgmqzb7.png" },
+      { name: "Tuberculosis", icon: "https://thumbs.dreamstime.com/z/tb-icon-tuberculosis-285299325.jpg" },
+      { name: "Other Pathology Tests", icon: "https://media.istockphoto.com/id/1161093132/vector/pathologist-biochemist.jpg?s=612x612&w=0&k=20&c=sDXb1H1QfzOO3q2_p-sPq5fph9wiRjaso4glHwqtTXM=" },
+      { name: "Musculo Skeletal", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-33rF33rViO8Qe-SDRKqLW3oKLKucini6bg&s" },
+      { name: "Toxicology", icon: "https://static.thenounproject.com/png/5331050-200.png" },
+      { name: "Clotting Disorders", icon: "https://media.istockphoto.com/id/1140286948/vector/blood-vessel-vector-line-icons.jpg?s=612x612&w=0&k=20&c=_a0EQ1E2-UTdKWF9gpIUD4M9T7ceM4_fzhJJf8wXS5w=" },
+      { name: "Drug Level Monitoring", icon: "https://static.vecteezy.com/system/resources/previews/015/603/253/non_2x/monitor-drugs-icon-outline-style-vector.jpg" },
+      { name: "Heavy Metals", icon: "https://cdn.iconscout.com/icon/premium/png-256-thumb/heavy-metals-5376542-4489830.png?f=webp&w=256" },
+      { name: "Infectious Disease", icon: "https://horizonnb.ca/wp-content/uploads/2022/01/CommunicableDiseases_Icon.png" },
+      { name: "Blood Disorders", icon: "https://static.thenounproject.com/png/6569242-200.png" },
+      { name: "Autoimmune Disorders", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXskZM2RveGJCZGhZ3aiqbxYBcy82-d1OFhw&s" },
+      { name: "Stomach", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvsr1IlUZQeZsJTBVB2ctC5uppl0_yNqAI5A&s" },
+      { name: "Inflammatory Markers", icon: "https://t4.ftcdn.net/jpg/04/76/85/35/360_F_476853519_utEyrWzj0EVHXspuNbrY7QAUlfRwc6CF.jpg" },
+      { name: "Electrolytes", icon: "https://www.shutterstock.com/image-vector/electrolytes-positive-negative-ions-line-260nw-2179683901.jpg" },
+    ];
+
+    const container = document.getElementById("testGrid");
+
+    testData.forEach(test => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${test.icon}" alt="${test.name} icon">
+        <span>${test.name}</span>
+      `;
+      card.onclick = () => {
+        localStorage.setItem("selectedTest",JSON.stringify(test));
+        window.location.href="details.html" ;
+      };
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
