@@ -8,13 +8,14 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #bcc9c6;
+      background:  #f4f8f7;
       /* background-image: url("https://static.vecteezy.com/system/resources/previews/049/806/631/non_2x/health-care-concepts-or-medical-technology-blue-background-or-illustration-vector.jpg"); */
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
+      font-family: "Lucida Console", "Courier New", monospace;
       
     }
 
@@ -27,7 +28,7 @@
     }
 
     .card {
-      background: rgb(228, 232, 233);
+      background: white(234, 229, 229);
       padding: 20px;
       text-align: center;
       border-radius: 10px;
@@ -131,7 +132,7 @@
     });
   </script>
   <br><br>
-  <footer style="background-color: #577594; color: white; width: 100%; margin: 0; padding: 0;">
+  <footer style="background-color: #577594; color: white; width: 100%; margin: 0; padding: 0; background-image: url(https://siddharthpetro.com/wp-content/uploads/2019/09/Footer-Background-Image.png);">
     <div style="max-width: 1200px; margin: 0 auto; padding: 60px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-around;">
       
       <div style="flex: 1 1 300px;">
@@ -145,10 +146,10 @@
       <div style="flex: 1 1 300px;">
         <h4 style="margin-bottom: 15px; text-align: center;">Created By</h4>
         <p style="font-size: 15px; line-height: 1.7; text-align: center;">
-          Navya Priyadarshini – Full Stack Developer & UI Designer<br>
-          Jahnavi – Full Stack Developer & UI Designer<br>
-          Srikanth – Full Stack Developer & UI Designer<br>
-          Chaitanya – Full Stack Developer & UI Designer
+         Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+         Jahnavi – Full Stack Developer & UI Designer<br>
+         Srikanth – Full Stack Developer & UI Designer<br>
+        Chaitanya – Full Stack Developer & UI Designer
         </p>
       </div>
   
