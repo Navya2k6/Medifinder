@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medifinder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Arial', sans-serif; 
+        }
+        body { 
+            background-color: #f5f5f5; 
+        }
+        .navbar { 
+            background-color: #0066cc; 
+            color: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            position: relative;
+            z-index: 10;
+        }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; }
+        .logo { 
+            font-size: 24px; 
+            font-weight: bold; 
+        }
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+        }
+        .nav-links li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+        }
+        .nav-links a:hover { 
+            opacity: 0.8; 
+        }
+        .dropdown { 
+            position: relative; 
+            display: inline-block; 
+        }
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background-color: white; 
+            min-width: 200px; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
+            z-index: 100; 
+            border-radius: 4px; 
+            top: 100%; 
+            right: 0; 
+        }
+        .dropdown-content a { 
+            color: #333; 
+            padding: 12px 16px; 
+            display: block; 
+            text-decoration: none; 
+            font-size: 14px; 
+        }
+        .dropdown-content a:hover { 
+            background-color: #f1f1f1; 
+        }
+        .dropdown:hover .dropdown-content { 
+            display: block; 
+        }
+        .mobile-menu-btn { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 24px; 
+            cursor: pointer; 
+        }
+        .user-info { 
+            padding: 16px; 
+            background-color: #f9f9f9; 
+            border-bottom: 1px solid #eee; 
+        }
+        .user-name { 
+            font-weight: bold; 
+            margin-bottom: 4px; 
+        }
+        .user-email { 
+            font-size: 12px; 
+            color: #666; 
+        }
+        .dropdown-divider { 
+            height: 1px; 
+            background-color: #eee; 
+            margin: 5px 0; 
+        }
+        .dropdown-content a i { 
+            width: 20px; 
+            margin-right: 10px; 
+            text-align: center; 
+        }
+        @media (max-width: 768px) {
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 60px; 
+                left: 0; 
+                width: 100%; 
+                background-color: #0066cc; 
+                flex-direction: column; 
+                padding: 20px; 
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
+            }
+            .nav-links.active { 
+                display: flex; 
+            }
+            .nav-links li { 
+                margin: 10px 0; 
+            }
+            .mobile-menu-btn { 
+                display: block; 
+            }
+            .dropdown-content { 
+                position: static; 
+                box-shadow: none; 
+                display: none; 
+                width: 100%; 
+                background-color: #f5f5f5; 
+                z-index: 100;
+            }
+            .dropdown:hover .dropdown-content { 
+                display: none; 
+            }
+            .dropdown.active .dropdown-content { 
+                display:block; 
+            }
+        }
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.6); 
+        }
+        .modal-content { 
+            background: white; 
+            max-width: 400px; 
+            margin: 10% auto; 
+            padding: 30px; 
+            border-radius: 10px; 
+            text-align: center; 
+        }
+        .modal-content input { 
+            width: 80%; 
+            padding: 10px; 
+            margin: 10px 0; 
+        }
+        .modal-content button { 
+            padding: 10px 20px; 
+            background-color: #f48484; 
+            border: none; 
+            color: white; 
+            border-radius: 5px;
+         }
+        .close { 
+            float: right; 
+            font-size: 20px; 
+            cursor: pointer; 
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /*search bar*/
+            .hero-section {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 400px;
+        background-image: url('https://via.placeholder.com/1200x400'); /* Replace with real image */
+        background-size: cover;
+        background-position: center;
+       
+        }
+
+    .hero-text {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: clamp(16px, 2.5vw, 25px);
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+    }
+
+    .search-bar-container {
+      position: absolute;
+      top: 20%; /* Adjust based on how far below you want the search bar */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      display: flex;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-bar-container input[type="text"] {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .search-bar-container button {
+      padding: 15px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .search-bar-container input:focus {
+      outline: none;
+    }
+
+    .search-bar-container button:hover {
+      background-color: #0056b3;
+    }
+    /* searchbar end */
+
+    /* ===== Banner Carousel ===== */
+    .banner-container {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      gap: 10px;
+      padding:20px;
+     
+    }
+
+    .banner {
+      
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .banner img {
+        width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== Categories Section ===== */
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 20px;
+    }
+
+    .category-container {
+      display: flex;
+      gap: 20px;
+      padding: 0 20px 40px;
+      flex-wrap: wrap;
+    }
+
+    .category-card {
+      width: 120px;
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .category-name {
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">All Medicines</a>
+                        <a href="#">Prescription Drugs</a>
+                        <a href="#">OTC Products</a>
+                        <a href="#">Ayurvedic</a>
+                        <a href="#">Homeopathy</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">Doctor Consultations</a>
+                        <a href="#">Lab Tests</a>
+                        <a href="#">Health Checkups</a>
+                        <a href="#">Surgical Supplies</a>
+                    </div>
+                </li>
+                <li><a href="#">Diagnostics</a></li>
+                <li><a href="#">Offers</a></li>
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;"><a href="#">My Account</a></li>
+                <li id="accountSection"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Login</h2>
+            <label for="mobile">Enter your number:</label>
+            <input type="text" id="mobile" placeholder="Enter mobile number">
+            <button onclick="sendOTP()">Send OTP</button>
+        </div>
+    </div>
+      
+       <br>
+        <!--Search bar and image-->
+    
+        <div class="hero-section">
+            <div class="hero-text">Search Medicines / General Products</div>
+            <div class="search-bar-container">
+              <input type="text" placeholder="Search for products...">
+              <button type="submit">Search</button>
+            </div>
+            <img src="bgi1.png" alt="image" style="width: 99vw; height: 25vh;" >
+        
+          
+           <!-- === Banners Section (Top Slider Look) === -->
+  <div class="banner-container">
+    <div class="banner">
+      <img src="50-80.jpeg" alt="Discount Banner">
+    </div>
+    <div class="banner">
+      <img src="img2.jpg" alt="MavensPick Banner">
+    </div>
+    <div class="banner">
+      <img src="img3.jpg" alt="20% Off Banner">
+    </div>
+  </div>
+
+  <!-- === Shop by Category Section === -->
+  <div class="section-title">Shop by Category</div>
+  <div class="category-container">
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Pharmacy.webp" alt="Pharmacy">
+      <div class="category-name">Pharmacy</div>
+    </div>
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+        <div class="category-card">
+          <img src="https://assets.technologynetworks.com/production/dynamic/images/content/361005/in-vitro-diagnostics-needs-seismic-change-to-improve-patient-outcomes-and-deliver-economic-benefits-361005-960x540.jpg?cb=11739445" alt="Diagnostics">
+          <div class="category-name">Diagnostics</div>
+        </div>
+      </a>
+      
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Doctors.webp" alt="Doctors">
+      <div class="category-name">Doctors</div>
+    </div>
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Medplus_Advantage.webp" alt="Advantage">
+      <div class="category-name">Advantage</div>
+    </div>
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/factory-direct.webp" alt="Factory Direct">
+      <div class="category-name">Factory Direct</div>
+    </div>
+  </div>
+<footer>
+    
+</footer>
+
+
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        window.onload = function () {
+        const userLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+        const accountSection = document.getElementById("accountSection");
+
+        if (userLoggedIn) {
+            // Hide the SignIn/Login button
+            const loginBtn = document.querySelector('li a[onclick="showLoginModal()"]');
+            if (loginBtn) {
+                loginBtn.parentElement.style.display = "none";
+            }
+
+            // Show the "My Account" dropdown
+            accountSection.innerHTML = `
+                <li class="dropdown">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">John Doe</div>
+                            <div class="user-email">john@example.com</div>
+                        </div>
+                        <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </div>
+                            </li>
+                        `;
+                    }
+                };
+
+
+                        // Set userLoggedIn to false for demo
+                        let userLoggedIn = false;
+
+function showLoginModal() {
+    if (!userLoggedIn) {
+        document.getElementById("loginModal").style.display = "block";
+    }
+}
+
+document.getElementById("closeModal").onclick = function () {
+    document.getElementById("loginModal").style.display = "none";
+};
+
+window.onclick = function(event) {
+    const modal = document.getElementById("loginModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
+
+function sendOTP() {
+    const number = document.getElementById("mobile").value;
+    if (number.length === 10 && /^\d{10}$/.test(number)) {
+        userLoggedIn = true;
+
+        // Hide modal
+        document.getElementById("loginModal").style.display = "none";
+
+        // Change nav
+        document.getElementById("loginNavItem").style.display = "none";
+        document.getElementById("accountNavItem").style.display = "inline-block";
+    } else {
+        alert("Please enter a valid 10-digit mobile number.");
+    }
+}
+
+        function logoutUser() {
+            localStorage.removeItem("userLoggedIn");
+            location.reload();
+        }
+        
+    </script>
+    <!-- ===== Footer ===== -->
+    <footer style="background-color: #577594; color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Created By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+      
+  
+</body>
+</html>
