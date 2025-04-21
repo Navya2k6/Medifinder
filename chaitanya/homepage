@@ -500,7 +500,7 @@ function sendOTP() {
         
     </script>
     <!-- ===== Footer ===== -->
-    <footer style="background-color: #577594; color: white; padding: 40px 20px;">
+    <footer style="background-color: #577594; color: white; padding: 40px 20px;background-image: url(https://siddharthpetro.com/wp-content/uploads/2019/09/Footer-Background-Image.png);">
         <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
           
           <div style="flex: 1 1 300px;">
@@ -526,7 +526,7 @@ function sendOTP() {
       
         <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
       
-        <div style="text-align: center; font-size: 13px; color: #ccc;">
+        <div style="text-align: center; font-size: 13px; color: white;">
           &copy; 2025 MediFinder. All rights reserved.
         </div>
       </footer>
