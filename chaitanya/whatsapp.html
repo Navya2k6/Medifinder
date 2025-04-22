@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDIFINDER - Order Medicines via WhatsApp</title>
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+         */
+        /* body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        } */
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .whatsapp-section {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .whatsapp-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .whatsapp-image {
+            flex: 1;
+            background: url('ww.png') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+            
+        }
+        
+        h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        h3 {
+            color: #25D366;
+            margin: 20px 0 10px;
+            font-size: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        
+        .alternate-option {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        .alternate-option h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        ul li:before {
+           
+            
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-section {
+                flex-direction: column;
+            }
+            
+            .whatsapp-image {
+                height: 50vh;
+                
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">All Medicines</a>
+                        <a href="#">Prescription Drugs</a>
+                        <a href="#">OTC Products</a>
+                        <a href="#">Ayurvedic</a>
+                        <a href="#">Homeopathy</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">Doctor Consultations</a>
+                        <a href="#">Lab Tests</a>
+                        <a href="#">Health Checkups</a>
+                        <a href="#">Surgical Supplies</a>
+                    </div>
+                </li>
+                <li><a href="Diagnostics.html">Diagnostics</a></li>
+                <li><a href="img-two.html">Offers</a></li>
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="container">
+        <div class="whatsapp-section">
+            <div class="whatsapp-content">
+                <h2>MEDFINDER Online Pharmacy Store in India</h2>
+                <p>Click the below button to message us directly on WhatsApp</p>
+                <a href="https://wa.me/9876543210" class="whatsapp-btn" target="_blank">
+                    Message on WhatsApp
+                </a>
+                
+                <div class="alternate-option">
+                    <h3>Alternately</h3>
+                    <ul>
+                        <li>Save our WhatsApp number +91 98765 43210</li>
+                        <li>Send us your Doctor Written Medicines List on the WhatsApp chat</li>
+                        <li>If you do not have it, do not worry! Simply message us "Hello"</li>
+                    </ul>
+                </div>
+                
+                <p>As simple as that! Have your medicines delivered at your doorstep.</p>
+            </div>
+            
+            <div class="whatsapp-image"></div>
+        </div>
+    </div>
+     <!-- ===== Footer ===== -->
+     <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+
+       <!-- LOGIN MODAL (place this at the bottom of body) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Login</h2>
+      <label for="mobile">Enter your number:</label>
+      <input type="text" id="mobile" placeholder="Enter mobile number">
+      <button onclick="sendOTP()">Send OTP</button>
+    </div>
+  </div>
+
+      <script src="navbar.js">
+    </script>
+      
+</body>
+</html>

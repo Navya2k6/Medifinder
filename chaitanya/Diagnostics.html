@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Diagnostic Tests with Icons</title>
+  <link rel="stylesheet" href="navbar.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background:  #f4f8f7;
       /* background-image: url("https://static.vecteezy.com/system/resources/previews/049/806/631/non_2x/health-care-concepts-or-medical-technology-blue-background-or-illustration-vector.jpg"); */
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
-      font-family: "Lucida Console", "Courier New", monospace;
+      font-family:cursive;
       
     }
 
@@ -28,7 +28,7 @@
     }
 
     .card {
-      background: white(234, 229, 229);
+      background-image: linear-gradient(to right, rgb(220, 209, 209), rgb(132, 135, 136)); 
       padding: 20px;
       text-align: center;
       border-radius: 10px;
@@ -51,7 +51,7 @@
       display: block;
       font-weight: 500;
     }
-    a{
+    /* a{
       position: absolute;
   top: 20px;
   left: 20px;
@@ -64,21 +64,70 @@
   font-weight: bold;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
+    } */
   </style>
 </head>
 <body>
 
+  <!--NAV BAR-->
+  <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">MediFinder</div>
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Medicines ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">All Medicines</a>
+                    <a href="#">Prescription Drugs</a>
+                    <a href="#">OTC Products</a>
+                    <a href="#">Ayurvedic</a>
+                    <a href="#">Homeopathy</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Healthcare ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">Doctor Consultations</a>
+                    <a href="#">Lab Tests</a>
+                    <a href="#">Health Checkups</a>
+                    <a href="#">Surgical Supplies</a>
+                </div>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+            <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+            <li id="accountNavItem" style="display: none;">
+                <a href="#">My Account ▾</a>
+                <div class="dropdown-content">
+                    <div class="user-info">
+                        <div class="user-name">User Name</div>
+                        <div class="user-email">user@example.com</div>
+                    </div>
+                    <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                    <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                    <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br>
   <h1>DIAGNOSTIC TESTS BASED ON CONDITION</h1>
   <br><br>
-  <a href="page1.html">
+  <!-- <a href="homepage.html">
     ← Back
-  </a>
+  </a> -->
 
   <div class="grid" id="testGrid">
     <!-- Cards inserted here -->
   </div>
-
+  
   <script>
     const testData = [
       { name: "Health packages", icon: "https://thumbs.dreamstime.com/b/health-icon-well-being-170542918.jpg" },
@@ -126,14 +175,15 @@
       `;
       card.onclick = () => {
         localStorage.setItem("selectedTest",JSON.stringify(test));
-        window.location.href="details.html" ;
+        window.location.href="Diagnostic-details.html" ;
       };
       container.appendChild(card);
     });
   </script>
   <br><br>
-  <footer style="background-color: #577594; color: white; width: 100%; margin: 0; padding: 0; background-image: url(https://siddharthpetro.com/wp-content/uploads/2019/09/Footer-Background-Image.png);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 60px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-around;">
+  <!-- ===== Footer ===== -->
+  <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
       
       <div style="flex: 1 1 300px;">
         <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
@@ -144,23 +194,39 @@
       </div>
       
       <div style="flex: 1 1 300px;">
-        <h4 style="margin-bottom: 15px; text-align: center;">Created By</h4>
-        <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+        <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+        <p style="font-size: 15px; line-height: 1.7;text-align: center;">
          Navya Priyadarshini – Full Stack Developer & UI Designer<br>
-         Jahnavi – Full Stack Developer & UI Designer<br>
-         Srikanth – Full Stack Developer & UI Designer<br>
-        Chaitanya – Full Stack Developer & UI Designer
+          Jahnavi – Full Stack Developer & UI Designer<br>
+          Srikanth – Full Stack Developer & UI Designer<br>
+          Chaitanya – Full Stack Developer & UI Designer
         </p>
+        <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
       </div>
-  
+      
     </div>
   
-    <hr style="margin: 0 auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+    <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
   
-    <div style="text-align: center; padding-bottom: 20px; font-size: 13px; color: #ccc;">
+    <div style="text-align: center; font-size: 13px; color: #ccc;">
       &copy; 2025 MediFinder. All rights reserved.
     </div>
   </footer>
+
+   <!-- LOGIN MODAL (place this at the bottom of body) -->
+<div id="loginModal" class="modal">
+<div class="modal-content">
+  <span id="closeModal" class="close">&times;</span>
+  <h2>Login</h2>
+  <label for="mobile">Enter your number:</label>
+  <input type="text" id="mobile" placeholder="Enter mobile number">
+  <button onclick="sendOTP()">Send OTP</button>
+</div>
+</div>
+
+  <script src="navbar.js">
+</script>
+  
   
 
 </body>
