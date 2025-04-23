@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .cart-item {
+            display:flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item img {
+            width: 150px; /* Adjust size as needed */
+            height: 150px;
+            margin-right: 10px;
+        }
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        .cart-item button {
+            background-color: #1470c0;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+        .remove:hover {
+            background-color: #ca0707; 
+        }
+        .order-button:hover {
+            background-color: #45a049; 
+        }
+        .order-button {
+            background-color: #4caf50; /* Green */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <button onclick="clearCart()">Clear Cart</button>
+
+
+    <script>
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsDiv = document.getElementById('cart-items');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            cartItemsDiv.innerHTML = ''; // Clear previous items
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.imageUrl}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <strong>${item.name} <br></strong> - ₹${item.price}
+                        <br>
+                    </div>
+                    <button class="remove" onclick="removeFromCart('${item.name}') ">Remove</button>
+                 <button class="order-button" onclick="placeOrder()">Place Order</button>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            displayCart();
+        }
+
+        function removeFromCart(name) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== name); // Remove item from cart
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            displayCart(); // Refresh cart display
+        }
+        function placeOrder(){
+            alert('order placed');
+        }
+        // Display cart items when the page loads
+        window.onload = displayCart;
+    </script>
+</body>
+</html>
