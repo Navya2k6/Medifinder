@@ -70,6 +70,8 @@ body {
 .dropdown:hover .dropdown-content { 
     display: block; 
 }
+
+  
 .modal {
     display: none;
     position: fixed;

@@ -102,7 +102,8 @@ flex-wrap: wrap;
 }
 
 .category-card {
-width: 120px;
+width: 15vw;
+height: 35vh;
 background-color: white;
 border-radius: 15px;
 overflow: hidden;
@@ -116,8 +117,8 @@ transform: translateY(-5px);
 }
 
 .category-card img {
-width: 100%;
-height: auto;
+width: 15vw;
+height: 30vh;
 object-fit: cover;
 }
 

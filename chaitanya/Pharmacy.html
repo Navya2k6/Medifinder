@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediFinder - Order Medicines</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .container h2 {
+      font-family: 'Cursive';
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+    }
+
+    .card ul {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    .btn {
+      background-color: #ec4141;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: #bb0000;
+    }
+  </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">All Medicines</a>
+                        <a href="#">Prescription Drugs</a>
+                        <a href="#">OTC Products</a>
+                        <a href="#">Ayurvedic</a>
+                        <a href="#">Homeopathy</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">Doctor Consultations</a>
+                        <a href="#">Lab Tests</a>
+                        <a href="#">Health Checkups</a>
+                        <a href="#">Surgical Supplies</a>
+                    </div>
+                </li>
+                <li><a href="Diagnostics.html">Diagnostics</a></li>
+                <li><a href="img-two.html">Offers</a></li>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+            <li><a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </a></li>
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  <!-- <header>
+    <h1>MediFinder</h1>
+    <nav>
+      <a href="#">Health Store</a>
+      <a href="#">Pharmacy</a>
+      <a href="#">Diagnostics</a>
+      <a href="#">Doctors</a>
+    </nav>
+  </header> -->
+
+  <div class="container">
+    <h2>3 ways to order your medicine</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/purchase-order.png" alt="Buy Online">
+        <h3>Buy Online</h3>
+        <ul>
+          <li>Search and select the medicines you want</li>
+          <li>Upload your Doctor Written Medicines List at checkout</li>
+          <li>Choose home delivery or store pick up</li>
+        </ul>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/shopping-cart-loaded.png" alt="Click and Pick">
+        <h3>Click and Pick</h3>
+        <ul>
+          <li>Search and select the medicines you want</li>
+          <li>Select the MediFinder store to pick up</li>
+          <li>Show the prescription at the store</li>
+        </ul>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/call-transfer.png" alt="Receive a Call Back">
+        <h3>Receive a Call Back</h3>
+        <ul>
+          <li>Our representative will call and confirm the order</li>
+        </ul>
+        <button class="btn">Upload Your Medicine List</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+      
+      <div style="flex: 1 1 300px;">
+        <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+        <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+          MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+          Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+        </p>
+      </div>
+      
+      <div style="flex: 1 1 300px;">
+        <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+        <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+         Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+          Jahnavi – Full Stack Developer & UI Designer<br>
+          Srikanth – Full Stack Developer & UI Designer<br>
+          Chaitanya – Full Stack Developer & UI Designer
+        </p>
+        <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+      </div>
+      
+    </div>
+  
+    <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+  
+    <div style="text-align: center; font-size: 13px; color: #ccc;">
+      &copy; 2025 MediFinder. All rights reserved.
+    </div>
+  </footer>
+
+   <!-- LOGIN MODAL (place this at the bottom of body) -->
+<div id="loginModal" class="modal">
+<div class="modal-content">
+  <span id="closeModal" class="close">&times;</span>
+  <h2>Login</h2>
+  <label for="mobile">Enter your number:</label>
+  <input type="text" id="mobile" placeholder="Enter mobile number">
+  <button onclick="sendOTP()">Send OTP</button>
+</div>
+</div>
+
+  <script src="navbar.js">
+</script>
+  
+</body>
+
+</html>

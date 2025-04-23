@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediFinder - Doctor Consultation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="cart.css">
+
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+
+    .hero {
+      height:33vh;
+      /* width: 100vw; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .section {
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .features, .categories, .testimonials, .symptoms {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .feature, .category, .testimonial, .symptom {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 280px;
+      margin: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature img, .category img, .symptom img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .feature h4, .category h4, .symptom h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .testimonial strong {
+      color: #d60000;
+    }
+
+
+  </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">All Medicines</a>
+                        <a href="#">Prescription Drugs</a>
+                        <a href="#">OTC Products</a>
+                        <a href="#">Ayurvedic</a>
+                        <a href="#">Homeopathy</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">Doctor Consultations</a>
+                        <a href="#">Lab Tests</a>
+                        <a href="#">Health Checkups</a>
+                        <a href="#">Surgical Supplies</a>
+                    </div>
+                </li>
+                <li><a href="Diagnostics.html">Diagnostics</a></li>
+                <li><a href="img-two.html">Offers</a></li>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+            <li><a href="cart.html" class="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </a></li>
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="hero">
+    <img src="onlineconsultation1.jpg" alt="" style="width: 50vw;"><img src="onlineconsultation2.jpg" alt="" style="width: 50vw;">
+  </div>
+
+  <section class="section">
+    <h3>Consult India’s Best Doctors Online</h3>
+    <div class="features">
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/100/doctor-male.png" alt="Specialists">
+        <h4>Top Specialists</h4>
+        <p>Consult from a list of highly qualified and experienced doctors.</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/100/appointment-reminders.png" alt="Appointment">
+        <h4>Instant Appointments</h4>
+        <p>Choose a convenient time slot and book your consultation instantly.</p>
+      </div>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/100/chat.png" alt="Chat">
+        <h4>Video & Chat</h4>
+        <p>Connect via secure video or chat at your convenience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Top Doctor Specialities</h3>
+    <div class="categories">
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/heart-health.png" alt="Cardiologist">
+        <h4>Cardiologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/brain.png" alt="Neurologist">
+        <h4>Neurologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/stethoscope.png" alt="General Physician">
+        <h4>General Physician</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/pregnant.png" alt="Gynecologist">
+        <h4>Gynecologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/spine.png" alt="Orthopedic">
+        <h4>Orthopedic</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/skin.png" alt="Dermatologist">
+        <h4>Dermatologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/lungs.png" alt="Pulmonologist">
+        <h4>Pulmonologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/kidneys.png" alt="Nephrologist">
+        <h4>Nephrologist</h4>
+      </div>
+      <div class="category">
+        <img src="https://img.icons8.com/ios-filled/100/liver.png" alt="Nephrologist">
+        <h4>hepatologist</h4>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h3>Consult by Symptoms</h3>
+    <div class="symptoms">
+      <div class="symptom">
+        <img src="https://thumb.ac-illust.com/6d/6d5d2b796d6004dea37197450976d8c9_t.jpeg" style="height: 15vh; width: 8vw;" alt="Headache">
+        <h4>Headache</h4>
+      </div>
+      <div class="symptom">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ90ExnqLStRb-Lowz9FO6zIFPAj1fVQzvPyw&s" style="height: 15vh; width: 8vw;" alt="Fever">
+        <h4>Fever</h4>
+      </div>
+      <div class="symptom">
+        <img src="https://thumb.ac-illust.com/eb/eb03fc6b7f6f92758d03ba00da6e3c6c_t.jpeg" style="height: 15vh; width: 8vw;" alt="Stomach Ache">
+        <h4>Stomach Ache</h4>
+      </div>
+      <div class="symptom">
+        <img src="https://freedesignfile.com/image/preview/8215/cartoon-girl-coughing-and-sneezing-into-tissue-black-and-white-vector.jpg" style="height: 15vh; width: 8vw;" alt="Cough & Cold">
+        <h4>Cough & Cold</h4>
+      </div>
+      <div class="symptom">
+        <img src="https://c8.alamy.com/zooms/9/28b8ad3626cc490585206bf35265b132/2dbaf48.jpg" style="height: 15vh; width: 8vw;" alt="Sore Throat">
+        <h4>Sore Throat</h4>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h3>What Our Patients Say</h3>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>"The consultation experience on MediFinder was smooth and professional. Highly recommend!"</p>
+        <strong>- Ananya R.</strong>
+      </div>
+      <div class="testimonial">
+        <p>"I booked a cardiologist in minutes and got expert advice from home. Very helpful service."</p>
+        <strong>- Rahul S.</strong>
+      </div>
+      <div class="testimonial">
+        <p>"Best online doctor service I've used. The doctor was kind, and the appointment was easy to manage."</p>
+        <strong>- Priya M.</strong>
+      </div>
+    </div>
+  </section>
+
+
+   <!-- ===== Footer ===== -->
+   <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+      
+      <div style="flex: 1 1 300px;">
+        <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+        <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+          MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+          Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+        </p>
+      </div>
+      
+      <div style="flex: 1 1 300px;">
+        <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+        <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+         Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+          Jahnavi – Full Stack Developer & UI Designer<br>
+          Srikanth – Full Stack Developer & UI Designer<br>
+          Chaitanya – Full Stack Developer & UI Designer
+        </p>
+        <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+      </div>
+      
+    </div>
+  
+    <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+  
+    <div style="text-align: center; font-size: 13px; color: #ccc;">
+      &copy; 2025 MediFinder. All rights reserved.
+    </div>
+  </footer>
+
+   <!-- LOGIN MODAL (place this at the bottom of body) -->
+<div id="loginModal" class="modal">
+<div class="modal-content">
+  <span id="closeModal" class="close">&times;</span>
+  <h2>Login</h2>
+  <label for="mobile">Enter your number:</label>
+  <input type="text" id="mobile" placeholder="Enter mobile number">
+  <button onclick="sendOTP()">Send OTP</button>
+</div>
+</div>
+
+  <script src="navbar.js">
+</script>
+  
+
+</body>
+
+</html>
