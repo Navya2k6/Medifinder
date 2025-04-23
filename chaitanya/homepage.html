@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medifinder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+
+    <nav class="navbar">
+      <div class="nav-container">
+          <div class="logo">MediFinder</div>
+          <button class="mobile-menu-btn">☰</button>
+          <ul class="nav-links" id="nav-links">
+              <li><a href="homepage.html">Home</a></li>
+              <li class="dropdown">
+                  <a href="#">Medicines ▾</a>
+                  <div class="dropdown-content">
+                      <a href="#">All Medicines</a>
+                      <a href="#">Prescription Drugs</a>
+                      <a href="#">OTC Products</a>
+                      <a href="#">Ayurvedic</a>
+                      <a href="#">Homeopathy</a>
+                  </div>
+              </li>
+              <li class="dropdown">
+                  <a href="#">Healthcare ▾</a>
+                  <div class="dropdown-content">
+                      <a href="#">Doctor Consultations</a>
+                      <a href="#">Lab Tests</a>
+                      <a href="#">Health Checkups</a>
+                      <a href="#">Surgical Supplies</a>
+                  </div>
+              </li>
+              <li><a href="Diagnostics.html">Diagnostics</a></li>
+              <li><a href="img-two.html">Offers</a></li>
+              <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+              <li id="accountNavItem" style="display: none;">
+                  <a href="#">My Account ▾</a>
+                  <div class="dropdown-content">
+                      <div class="user-info">
+                          <div class="user-name">User Name</div>
+                          <div class="user-email">user@example.com</div>
+                      </div>
+                      <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                      <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                      <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                      <div class="dropdown-divider"></div>
+                      <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                      <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </nav>
+
+    <!-- Login Modal
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Login</h2>
+            <label for="mobile">Enter your number:</label>
+            <input type="text" id="mobile" placeholder="Enter mobile number">
+            <button onclick="sendOTP()">Send OTP</button>
+        </div>
+    </div> -->
+      
+       <br>
+        <!--Search bar and image-->
+    
+        <div class="hero-section">
+            <div class="hero-text">Search Medicines / General Products</div>
+            <div class="search-bar-container">
+              <input type="text" placeholder="Search for products...">
+              <button type="submit">Search</button>
+            </div>
+            <img src="bgi1.png" alt="image" style="width: 99vw; height: 25vh;" >
+        
+          
+           <!-- === Banners Section (Top Slider Look) === -->
+  <div class="banner-container">
+    <div class="banner">
+     <a href="img-one.html"><img src="img1.jpg" alt="offers"></a> 
+    </div>
+
+    <div class="banner">
+     <a href="img-two.html"> <img src="img2.jpg" alt="offer"> </a>
+    </div>
+    
+    <div class="banner">
+     <a href="whatsapp.html"> <img src="whatsapp.jpeg" alt="whatsapp"> </a>
+    </div>
+
+  </div>
+
+  <!-- === Shop by Category Section === -->
+  <div class="section-title">Shop by Category</div>
+  <div class="category-container">
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Pharmacy.webp" alt="Pharmacy">
+      <div class="category-name">Pharmacy</div>
+    </div>
+    <a href="Diagnostics.html" style="text-decoration: none; color: inherit;">
+        <div class="category-card">
+          <img src="https://assets.technologynetworks.com/production/dynamic/images/content/361005/in-vitro-diagnostics-needs-seismic-change-to-improve-patient-outcomes-and-deliver-economic-benefits-361005-960x540.jpg?cb=11739445" alt="Diagnostics">
+          <div class="category-name">Diagnostics</div>
+        </div>
+      </a>
+      
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Doctors.webp" alt="Doctors">
+      <div class="category-name">Doctors</div>
+    </div>
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/Medplus_Advantage.webp" alt="Advantage">
+      <div class="category-name">Advantage</div>
+    </div>
+    <div class="category-card">
+      <img src="https://www.medplusmart.com/media/wysiwyg/factory-direct.webp" alt="Factory Direct">
+      <div class="category-name">Factory Direct</div>
+    </div>
+  </div>
+
+    <!-- ===== Footer ===== -->
+    <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+
+       <!-- LOGIN MODAL (place this at the bottom of body) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Login</h2>
+      <label for="mobile">Enter your number:</label>
+      <input type="text" id="mobile" placeholder="Enter mobile number">
+      <button onclick="sendOTP()">Send OTP</button>
+    </div>
+  </div>
+
+      <script src="navbar.js">
+    </script>
+      
+  
+</body>
+</html>

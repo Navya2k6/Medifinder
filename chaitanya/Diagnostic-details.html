@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Details</title>
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8f7;
+      margin-bottom: 0;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .card {
+      background-image: linear-gradient(to right, #b6fbff, #83a4d4);
+      display: inline-block;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin: 10px 0;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #346294;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #346294;
+    }
+  </style>
+</head>
+<body>
+
+  <!--NAV BAR-->
+  <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">MediFinder</div>
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Medicines ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">All Medicines</a>
+                    <a href="#">Prescription Drugs</a>
+                    <a href="#">OTC Products</a>
+                    <a href="#">Ayurvedic</a>
+                    <a href="#">Homeopathy</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Healthcare ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">Doctor Consultations</a>
+                    <a href="#">Lab Tests</a>
+                    <a href="#">Health Checkups</a>
+                    <a href="#">Surgical Supplies</a>
+                </div>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+            <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+            <li id="accountNavItem" style="display: none;">
+                <a href="#">My Account ▾</a>
+                <div class="dropdown-content">
+                    <div class="user-info">
+                        <div class="user-name">User Name</div>
+                        <div class="user-email">user@example.com</div>
+                    </div>
+                    <a href="#"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                    <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                    <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+  <br><br><br><br><br><br>
+
+  <div class="card" id="detailCard">
+    <!-- Details go here -->
+  </div>
+
+  <br>
+  <a href="Diagnostics.html" class="back-btn">← Back to Tests</a>
+
+ 
+  <script>
+    const test = JSON.parse(localStorage.getItem("selectedTest"));
+
+    if (test) {
+  const detailCard = document.getElementById("detailCard");
+
+  const testContent = {
+    "Health packages": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>description:</strong>"Comprehensive health check-up packages tailored for different age groups and lifestyles.",</p>
+      <p><strong>procedure:</strong> "Includes a set of blood tests, imaging, and physical assessments.",</p>
+      <p><strong>sample:</strong>"Blood, urine, and imaging as needed.",</p>
+      <p><strong>cost:</strong>"₹999 - ₹4999"</p>
+    `,
+    "Anaemia": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      
+      <p><strong>description:</strong> "Tests to determine the levels of hemoglobin and detect types of anaemia.",</P>
+      <p><strong>procedure:</strong> "Complete blood count (CBC), iron studies, B12, and folate tests.",</P>
+      <p><strong>sample:</strong> "Blood sample",</p>
+      <p><strong>cost:</strong> "₹300 - ₹800"</p>
+    `,
+    "Diabetes": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Screening for high blood sugar and long-term glucose control.</p>
+      <p><strong>Procedure:</strong> Fasting blood sugar, HbA1c, and postprandial glucose tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹200 - ₹600</p>
+    `,
+    "Heart": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Tests to assess cardiac function and risk factors.</p>
+      <p><strong>Procedure:</strong> ECG, Echo, lipid profile, and troponin tests.</p>
+      <p><strong>Sample:</strong> Blood and imaging tests</p>
+      <p><strong>Cost:</strong> ₹500 - ₹3000</p>
+    `,
+    "Liver": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluates liver enzymes and liver health.</p>
+      <p><strong>Procedure:</strong> LFT (Liver Function Test) panel including ALT, AST, bilirubin.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹350 - ₹1000</p>
+    `,
+    "Lungs": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Assess lung function and diagnose respiratory conditions.</p>
+      <p><strong>Procedure:</strong> Chest X-ray, spirometry, arterial blood gases (ABG).</p>
+      <p><strong>Sample:</strong> Imaging and/or blood sample</p>
+      <p><strong>Cost:</strong> ₹400 - ₹1500</p>
+    `,
+    "Fertility": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluate reproductive health in males and females.</p>
+      <p><strong>Procedure:</strong> Hormone analysis, semen analysis, ovulation tests.</p>
+      <p><strong>Sample:</strong> Blood or semen sample</p>
+      <p><strong>Cost:</strong> ₹600 - ₹2500</p>
+    `,
+    "Kidney": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Tests to monitor kidney function and diagnose disorders.</p>
+      <p><strong>Procedure:</strong> KFT (Kidney Function Test), creatinine, urea, electrolytes.</p>
+      <p><strong>Sample:</strong> Blood and urine sample</p>
+      <p><strong>Cost:</strong> ₹400 - ₹1200</p>
+    `,
+    "Allergy": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Detect sensitivity to allergens.</p>
+      <p><strong>Procedure:</strong> Skin prick test, blood IgE levels.</p>
+      <p><strong>Sample:</strong> Blood or skin test</p>
+      <p><strong>Cost:</strong> ₹600 - ₹2000</p>
+    `,
+    "Thyroid": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluate thyroid function and hormone levels.</p>
+      <p><strong>Procedure:</strong> TSH, T3, T4 blood tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹300 - ₹800</p>
+    `,
+    "Vitamins": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Measure vitamin levels such as D, B12, etc.</p>
+      <p><strong>Procedure:</strong> Blood tests for vitamin profiling.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹500 - ₹1500</p>
+    `,
+    "Fever": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Determines the cause of fever (viral, bacterial, etc.).</p>
+      <p><strong>Procedure:</strong> CBC, Widal test, malaria test, dengue test.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹300 - ₹1000</p>
+    `,
+    "Bone": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluates bone health and detects osteoporosis or arthritis.</p>
+      <p><strong>Procedure:</strong> DEXA scan, calcium, phosphorus, Vitamin D tests.</p>
+      <p><strong>Sample:</strong> Blood and scan</p>
+      <p><strong>Cost:</strong> ₹500 - ₹2000</p>
+    `,
+    "Immunity": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Assesses immune system function.</p>
+      <p><strong>Procedure:</strong> CBC, IgG, IgM, IgA, CRP tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹500 - ₹1500</p>
+    `,
+    "Cancer": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Screening for different types of cancers.</p>
+      <p><strong>Procedure:</strong> Tumor markers (PSA, CA-125, CEA), imaging tests.</p>
+      <p><strong>Sample:</strong> Blood and imaging</p>
+      <p><strong>Cost:</strong> ₹800 - ₹5000</p>
+    `,
+    "Hormones": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Checks hormonal imbalances affecting growth, metabolism, and reproduction.</p>
+      <p><strong>Procedure:</strong> Blood tests for estrogen, testosterone, cortisol, etc.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹500 - ₹1500</p>
+    `,
+    "Prostate": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Screening for prostate-related issues.</p>
+      <p><strong>Procedure:</strong> PSA blood test, physical examination, ultrasound.</p>
+      <p><strong>Sample:</strong> Blood sample and imaging</p>
+      <p><strong>Cost:</strong> ₹400 - ₹1500</p>
+    `,
+    "Pregnancy": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Confirms pregnancy and monitors maternal health.</p>
+      <p><strong>Procedure:</strong> hCG test, ultrasound scan.</p>
+      <p><strong>Sample:</strong> Urine, blood, imaging</p>
+      <p><strong>Cost:</strong> ₹200 - ₹1500</p>
+    `,
+    "HIV": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Detects HIV infection and monitors viral load.</p>
+      <p><strong>Procedure:</strong> ELISA, Western blot, PCR tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹300 - ₹1000</p>
+    `,
+    "Tuberculosis": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Diagnosis and monitoring of tuberculosis (TB).</p>
+      <p><strong>Procedure:</strong> Sputum test, Mantoux test, chest X-ray.</p>
+      <p><strong>Sample:</strong> Sputum, skin test, imaging</p>
+      <p><strong>Cost:</strong> ₹300 - ₹1200</p>
+    `,
+    "Other Pathology Tests": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Includes a wide range of routine and specialized lab tests.</p>
+      <p><strong>Procedure:</strong> As per doctor’s prescription (e.g., CBC, ESR, urinalysis).</p>
+      <p><strong>Sample:</strong> Blood, urine, stool</p>
+      <p><strong>Cost:</strong> ₹100 - ₹2000</p>
+    `,
+    "Musculo Skeletal": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluation of joints, muscles, and bones.</p>
+      <p><strong>Procedure:</strong> X-ray, MRI, bone markers.</p>
+      <p><strong>Sample:</strong> Imaging, blood</p>
+      <p><strong>Cost:</strong> ₹700 - ₹3000</p>
+    `,
+    "Toxicology": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Detects toxins, drugs, and chemicals in the body.</p>
+      <p><strong>Procedure:</strong> Blood, urine, and hair analysis.</p>
+      <p><strong>Sample:</strong> Blood, urine, hair</p>
+      <p><strong>Cost:</strong> ₹800 - ₹2500</p>
+    `,
+    "Clotting Disorders": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Checks for bleeding or clotting abnormalities.</p>
+      <p><strong>Procedure:</strong> PT, aPTT, INR, D-dimer tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹400 - ₹1000</p>
+    `,
+    "Drug Level Monitoring": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}"></h2>
+      <p><strong>Description:</strong> Measures specific medication levels in the bloodstream.</p>
+      <p><strong>Procedure:</strong> Blood tests for therapeutic drug levels.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹600 - ₹2000</p>
+    `,
+    "Heavy Metals": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Detects the presence of heavy metals like lead, mercury, arsenic.</p>
+      <p><strong>Procedure:</strong> Blood and urine analysis.</p>
+      <p><strong>Sample:</strong> Blood and urine sample</p>
+      <p><strong>Cost:</strong> ₹700 - ₹2500</p>
+    `,
+    "Infectious Disease": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Identifies bacterial, viral, or parasitic infections.</p>
+      <p><strong>Procedure:</strong> Blood tests, cultures, PCR.</p>
+      <p><strong>Sample:</strong> Blood, urine, or other fluids</p>
+      <p><strong>Cost:</strong> ₹300 - ₹1500</p>
+    `,
+    "Blood Disorders": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Diagnoses conditions like leukemia, hemophilia, etc.</p>
+      <p><strong>Procedure:</strong> CBC, bone marrow biopsy, clotting profile.</p>
+      <p><strong>Sample:</strong> Blood, bone marrow</p>
+      <p><strong>Cost:</strong> ₹800 - ₹3000</p>
+    `,
+    "Autoimmune Disorders": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Detects autoimmune conditions like lupus, RA.</p>
+      <p><strong>Procedure:</strong> ANA, CRP, ESR, specific antibodies.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹500 - ₹2000</p>
+    `,
+    "Stomach": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Evaluates gastric issues like ulcers, infections.</p>
+      <p><strong>Procedure:</strong> Endoscopy, H. pylori test, stool test.</p>
+      <p><strong>Sample:</strong> Stool, breath, or tissue sample</p>
+      <p><strong>Cost:</strong> ₹500 - ₹3000</p>
+    `,
+    "Inflammatory Markers": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Measures inflammation in the body.</p>
+      <p><strong>Procedure:</strong> CRP, ESR, IL-6 tests.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹300 - ₹1000</p>
+    `,
+    "Electrolytes": `
+      <img src="${test.icon}" alt="${test.name}">
+      <h2>${test.name}</h2>
+      <p><strong>Description:</strong> Measures levels of sodium, potassium, calcium, etc.</p>
+      <p><strong>Procedure:</strong> Blood electrolyte panel.</p>
+      <p><strong>Sample:</strong> Blood sample</p>
+      <p><strong>Cost:</strong> ₹200 - ₹600</p>
+    `
+  };
+
+  detailCard.innerHTML = testContent[test.name] || `
+    <img src="${test.icon}" alt="${test.name}">
+    <h2>${test.name}</h2>
+    <p>This section displays detailed information about <strong>${test.name}</strong>.</p>
+  `;
+}
+
+  </script>
+
+  <br><br>
+  <br><br>
+    <!-- ===== Footer ===== -->
+    <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+        
+        <div style="flex: 1 1 300px;">
+          <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+          <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+            MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+            Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+          </p>
+        </div>
+        
+        <div style="flex: 1 1 300px;">
+          <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+          <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+           Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+            Jahnavi – Full Stack Developer & UI Designer<br>
+            Srikanth – Full Stack Developer & UI Designer<br>
+            Chaitanya – Full Stack Developer & UI Designer
+          </p>
+          <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+        </div>
+        
+      </div>
+    
+      <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+    
+      <div style="text-align: center; font-size: 13px; color: #ccc;">
+        &copy; 2025 MediFinder. All rights reserved.
+      </div>
+    </footer>
+
+     <!-- LOGIN MODAL (place this at the bottom of body) -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2>Login</h2>
+    <label for="mobile">Enter your number:</label>
+    <input type="text" id="mobile" placeholder="Enter mobile number">
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
+</div>
+
+    <script src="navbar.js">
+  </script>
+    
+  
+</body>
+</html>

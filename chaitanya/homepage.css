@@ -1,0 +1,128 @@
+
+
+/*search bar*/
+    .hero-section {
+position: relative;
+z-index: 1;
+width: 100%;
+height: 400px;
+background-image: url('https://via.placeholder.com/1200x400'); /* Replace with real image */
+background-size: cover;
+background-position: center;
+
+}
+
+.hero-text {
+position: absolute;
+top: 10%;
+left: 50%;
+transform: translateX(-50%);
+color: white;
+font-size: clamp(16px, 2.5vw, 25px);
+font-weight: bold;
+text-align: center;
+text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+z-index: 2;
+}
+
+.search-bar-container {
+position: absolute;
+top: 20%; /* Adjust based on how far below you want the search bar */
+left: 50%;
+transform: translateX(-50%);
+width: 60%;
+display: flex;
+background: rgba(255, 255, 255, 0.95);
+border-radius: 30px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar-container input[type="text"] {
+flex: 1;
+padding: 15px 20px;
+border: none;
+font-size: 16px;
+}
+
+.search-bar-container button {
+padding: 15px 25px;
+background-color: #007bff;
+color: white;
+border: none;
+font-size: 16px;
+cursor: pointer;
+}
+
+.search-bar-container input:focus {
+outline: none;
+}
+
+.search-bar-container button:hover {
+background-color: #0056b3;
+}
+/* searchbar end */
+
+/* ===== Banner Carousel ===== */
+.banner-container {
+width: 100%;
+overflow: hidden;
+display: flex;
+gap: 10px;
+padding:20px;
+
+}
+
+.banner {
+
+flex: 1;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.banner img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+/* ===== Categories Section ===== */
+.section-title {
+font-size: 20px;
+font-weight: bold;
+margin: 20px;
+}
+
+.category-container {
+display: flex;
+gap: 20px;
+padding: 0 20px 40px;
+flex-wrap: wrap;
+}
+
+.category-card {
+width: 120px;
+background-color: white;
+border-radius: 15px;
+overflow: hidden;
+text-align: center;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s;
+}
+
+.category-card:hover {
+transform: translateY(-5px);
+}
+
+.category-card img {
+width: 100%;
+height: auto;
+object-fit: cover;
+}
+
+.category-name {
+padding: 10px;
+font-size: 14px;
+font-weight: 600;
+}
