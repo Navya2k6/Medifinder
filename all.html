@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Medicines</title> 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+    }
+
+    header {
+  background-image: url(med.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: rgb(44, 16, 170);
+  padding: 1rem;
+  text-align: center;
+}
+h1{
+  font-weight:700;
+}
+#d{
+  color: rgb(1, 1, 0);
+}
+
+
+    .search-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-container input {
+    width: 50%;
+    padding: 10px;
+    border-radius: 20px; /* Adjust this value as needed */
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border: 2px solid black;
+}
+
+    .medicine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .medicine-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .medicine-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .medicine-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .medicine-card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .medicine-card p {
+      color: #555;
+    }
+
+    .medicine-card button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .medicine-card button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MEDFINDER</h1>
+  <h5 id="d">Find all your medicines in one place..!</h5>
+</header>
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder=" 🔍Search medicines...">
+</div>
+
+<div class="medicine-grid" id="medicineList">
+  <p id="no-results" style="display: none; text-align: center; font-size: 1.2rem; color: red;">
+    No medicines found matching your search.
+  </p>
+  
+  <div class="medicine-card">
+    <img src="para.webp" alt="Paracetamol">
+    <h3>Paracetamol</h3>
+    <p style="font-size: 14px; color: #777;">Used for fever and pain relief</p> 
+    <p>500mg | ₹20</p>
+    <button onclick="addToCart('Paracetamol',20,'para.webp')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="azit.jpg" alt="Combiflam">
+    <h3> Azithromycin</h3>
+    <p style="font-size: 14px; color: #777;">    to treat certain bacterial infections</p> 
+    <p>500mg | ₹10</p>
+    <button onclick="addToCart('Azithromycin',10,'azit.webp')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="rutoheal.jpg" alt="ruthoheal">
+    <h3>  Rutoheal Tab</h3>
+    <p style="font-size: 14px; color: #777;">Used for pain and inflammation</p> 
+    <p>500mg | ₹20</p>
+    <button onclick="addToCart('Rutoheal',20,'rutoheal.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="qutan.jpg" alt="qutan">
+    <h3>   Qutan  250   </h3>
+    <p style="font-size: 14px; color: #777;">Used for fever and pain relief</p> 
+    <p>300mg | ₹20</p>
+    <button onclick="addToCart('Qutan 250 ',20,'qutan.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="limcee.jpg" alt="Limcee Vitamin C">
+    <h3>Limcee Vitamin C</h3>
+    <p style="font-size: 14px; color: #777;">usd to treat vitamin-c deficiency</p> 
+    <p>500mg | ₹30</p>   
+     <button onclick="addToCart('Limcee vitamin C',30,'limcee.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="honitus.jpg" alt="Dabur Honitus">
+    <h3>Dabur Honitus</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieve from cough</p> 
+    <p>100ml | ₹120</p>
+    <button onclick="addToCart('Honitus',120,'honitus.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="dabur.jpg" alt="Baidyanath Chyawanprash">
+    <h3>Chyawanprash</h3>
+    <p style="font-size: 14px; color: #777;">   to treat alleviate nausea, vomiting, hyperacidity</p> 
+    <p>500g | ₹120</p>
+    <button onclick="addToCart('Chyawanprash',120,'dabur.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="patanjali.png" alt="Giloy Ghanvati">
+    <h3>Patanjali Giloy Ghanvati</h3>
+    <p style="font-size: 14px; color: #777;">    enhances immunity and reduces cough, fever, and cold</p> 
+    <p>60 Tabs | ₹90</p>
+    <button onclick="addToCart('Patanjali Giloy Ghanvati',90,'patanjali.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="itone.jpg" alt="itone">
+    <h3>itone eye drops</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieve from eye dryness</p> 
+    <p>50 ml |₹120</p>
+    <button onclick="addToCart('itone eye drops',120,'itone.jpg')">Add to Cart</button>
+  </div>
+
+
+  <div class="medicine-card">
+    <img src="bicombi.jpg"alt="Biocombination 28">
+    <h3>Biocombination No. 28</h3>
+    <p style="font-size: 14px; color: #777;">provides nutrition for tissues</p> 
+    <p>25g | ₹95</p>
+    <button onclick="addToCart('Biocombination No. 28',95,'bicombi.jpg')">Add to Cart</button>
+  </div>
+  
+  <div class="medicine-card">
+    <img src="zandubalm.webp" alt="Zandu Balm">
+    <h3>Zandu Balm</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieves from headache</p> 
+    <p>8ml | ₹40</p>
+    <button onclick="addToCart('zandubalm',40,'zandubalm.webp')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="combiflam.jpg" alt="Combiflam">
+    <h3>Combiflam</h3>
+    <p style="font-size: 14px; color: #777;">relieves muscle pain,headache etc</p> 
+    <p>500 mg | ₹18</p>
+    <button onclick="addToCart('Combiflam',18,'combiflam.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="omnigel.avif" alt="Combiflam">
+    <h3>omnigel</h3>
+    <p style="font-size: 14px; color: #777;">relieves muscle pain</p> 
+    <p>100 g | ₹130</p>
+    <button onclick="addToCart('omnigel',120,'omnigel.avif')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="dermi5.avif" alt="Combiflam">
+    <h3>Dermi 5</h3>
+    <p style="font-size: 14px; color: #777;">Used to treat fungal infections</p> 
+    <p>100 g| ₹150</p>
+    <button onclick="addToCart('Dermi 5',150,'dermi5.avif')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="ceflox.webp" alt="Combiflam">
+    <h3>Ceflox-D</h3>
+    <p style="font-size: 14px; color: #777;">used to treat bacterial infections and itching in ears and eyes</p> 
+    <p>20ml | ₹130</p>
+    <button onclick="addToCart('Ceflox-D',130,'ceflox.webp')">Add to Cart</button>
+  </div>
+ 
+
+</div>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const medicineList = document.getElementById("medicineList");
+
+  // Create and append the "No results" message
+  const noResultsMessage = document.createElement("p");
+  noResultsMessage.innerText = "No results found.";
+  noResultsMessage.style.textAlign = "center";
+  noResultsMessage.style.fontSize = "1.2rem";
+  noResultsMessage.style.color = "red";
+  noResultsMessage.style.display = "none";
+  medicineList.parentNode.insertBefore(noResultsMessage, medicineList.nextSibling);
+
+  searchInput.addEventListener("input", function () {
+    const filter = searchInput.value.toLowerCase();
+    const cards = medicineList.getElementsByClassName("medicine-card");
+
+    let visibleCount = 0;
+
+    Array.from(cards).forEach(card => {
+      const name = card.querySelector("h3").innerText.toLowerCase();
+      const isVisible = name.includes(filter);
+      card.style.display = isVisible ? "block" : "none";
+      if (isVisible) visibleCount++;
+    });
+
+    noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
+  });
+</script>
+
+</body>
+</html>

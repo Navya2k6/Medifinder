@@ -102,8 +102,13 @@ flex-wrap: wrap;
 }
 
 .category-card {
+<<<<<<< HEAD
 width: 14vw;
 height: 30vh;
+=======
+width: 15vw;
+height: 35vh;
+>>>>>>> e7abf992e7059b0959981070e8a24a4649ee1af9
 background-color: white;
 border-radius: 15px;
 overflow: hidden;
@@ -117,8 +122,13 @@ transform: translateY(-5px);
 }
 
 .category-card img {
+<<<<<<< HEAD
 width: 12vw;
 height: 25vh;
+=======
+width: 15vw;
+height: 30vh;
+>>>>>>> e7abf992e7059b0959981070e8a24a4649ee1af9
 object-fit: cover;
 }
 
