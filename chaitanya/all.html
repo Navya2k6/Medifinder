@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Medicines</title> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="cart.css">
+  <style>
+
+    h1 {
+      font-weight:700;
+    }
+    #d {
+      color: rgb(1, 1, 0);
+    }
+
+    .search-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-container input {
+      width: 50%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      border: 2px solid black;
+    }
+
+    .medicine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .medicine-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .medicine-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .medicine-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .medicine-card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .medicine-card p {
+      color: #555;
+    }
+
+    .medicine-card button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .medicine-card button:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">MediFinder</div>
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Medicines ▾</a>
+                <div class="dropdown-content">
+                    <a href="all.html">All Medicines</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Healthcare ▾</a>
+                <div class="dropdown-content">
+                    <a href="personalcare.html">Personal Care</a>
+                    <a href="nutritioncare.html">Nutrition Care</a>
+                </div>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+
+
+             <!-- Cart icon in nav -->
+             <li>
+              <a href="#" class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+            
+
+
+            <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+            <li id="accountNavItem" style="display: none;">
+                <a href="#">My Account ▾</a>
+                <div class="dropdown-content">
+                    <div class="user-info">
+                        <div class="user-name">User Name</div>
+                        <div class="user-email">user@example.com</div>
+                    </div>
+                    <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                
+                    <div class="dropdown-divider"></div>
+                    <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+                    <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <div class="cart-title">Your Cart</div>
+      <div class="close-cart" onclick="toggleCart()">×</div>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be added here dynamically -->
+    </div>
+    <div class="cart-total">
+      Total: ₹<span id="cartTotal">0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  </div>
+
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder=" 🔍Search medicines...">
+</div>
+
+<div class="medicine-grid" id="medicineList">
+  <p id="no-results" style="display: none; text-align: center; font-size: 1.2rem; color: red;">
+    No medicines found matching your search.
+  </p>
+  
+  <div class="medicine-card">
+    <img src="para.webp" alt="Paracetamol">
+    <h3>Paracetamol</h3>
+    <p style="font-size: 14px; color: #777;">Used for fever and pain relief</p> 
+    <p>500mg | ₹20</p>
+    <button onclick="addToCart('Paracetamol',20,'para.webp')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="azit.jpg" alt="Combiflam">
+    <h3> Azithromycin</h3>
+    <p style="font-size: 14px; color: #777;">    to treat certain bacterial infections</p> 
+    <p>500mg | ₹10</p>
+    <button onclick="addToCart('Azithromycin',10,'azit.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="rutoheal.jpg" alt="ruthoheal">
+    <h3>  Rutoheal Tab</h3>
+    <p style="font-size: 14px; color: #777;">Used for pain and inflammation</p> 
+    <p>500mg | ₹20</p>
+    <button onclick="addToCart('Rutoheal',20,'rutoheal.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="qutan.jpg" alt="qutan">
+    <h3>   Qutan  250   </h3>
+    <p style="font-size: 14px; color: #777;">Used for fever and pain relief</p> 
+    <p>300mg | ₹20</p>
+    <button onclick="addToCart('Qutan 250',20,'qutan.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="limcee.jpg" alt="Limcee Vitamin C">
+    <h3>Limcee Vitamin C</h3>
+    <p style="font-size: 14px; color: #777;">usd to treat vitamin-c deficiency</p> 
+    <p>500mg | ₹30</p>   
+     <button onclick="addToCart('Limcee vitamin C',30,'limcee.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="honitus.jpg" alt="Dabur Honitus">
+    <h3>Dabur Honitus</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieve from cough</p> 
+    <p>100ml | ₹120</p>
+    <button onclick="addToCart('Honitus',120,'honitus.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="dabur.jpg" alt="Baidyanath Chyawanprash">
+    <h3>Chyawanprash</h3>
+    <p style="font-size: 14px; color: #777;">   to treat alleviate nausea, vomiting, hyperacidity</p> 
+    <p>500g | ₹120</p>
+    <button onclick="addToCart('Chyawanprash',120,'dabur.jpg')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="patanjali.png" alt="Giloy Ghanvati">
+    <h3>Patanjali Giloy Ghanvati</h3>
+    <p style="font-size: 14px; color: #777;">    enhances immunity and reduces cough, fever, and cold</p> 
+    <p>60 Tabs | ₹90</p>
+    <button onclick="addToCart('Patanjali Giloy Ghanvati',90,'patanjali.png')">Add to Cart</button>
+  </div>
+  <div class="medicine-card">
+    <img src="itone.jpg" alt="itone">
+    <h3>itone eye drops</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieve from eye dryness</p> 
+    <p>50 ml |₹120</p>
+    <button onclick="addToCart('itone eye drops',120,'itone.jpg')">Add to Cart</button>
+  </div>
+
+
+  <div class="medicine-card">
+    <img src="bicombi.jpg"alt="Biocombination 28">
+    <h3>Biocombination No. 28</h3>
+    <p style="font-size: 14px; color: #777;">provides nutrition for tissues</p> 
+    <p>25g | ₹95</p>
+    <button onclick="addToCart('Biocombination No. 28',95,'bicombi.jpg')">Add to Cart</button>
+  </div>
+  
+  <div class="medicine-card">
+    <img src="zandubalm.webp" alt="Zandu Balm">
+    <h3>Zandu Balm</h3>
+    <p style="font-size: 14px; color: #777;">Used to relieves from headache</p> 
+    <p>8ml | ₹40</p>
+    <button onclick="addToCart('Zandu Balm',40,'zandubalm.webp')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="combiflam.jpg" alt="Combiflam">
+    <h3>Combiflam</h3>
+    <p style="font-size: 14px; color: #777;">relieves muscle pain,headache etc</p> 
+    <p>500 mg | ₹18</p>
+    <button onclick="addToCart('Combiflam',18,'combiflam.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="omnigel.avif" alt="Combiflam">
+    <h3>omnigel</h3>
+    <p style="font-size: 14px; color: #777;">relieves muscle pain</p> 
+    <p>100 g | ₹130</p>
+    <button onclick="addToCart('omnigel',130,'omnigel.avif')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="dermi5.avif" alt="Combiflam">
+    <h3>Dermi 5</h3>
+    <p style="font-size: 14px; color: #777;">Used to treat fungal infections</p> 
+    <p>100 g| ₹150</p>
+    <button onclick="addToCart('Dermi 5',150,'dermi5.avif')">Add to Cart</button>
+  </div>
+
+  <div class="medicine-card">
+    <img src="ceflox.webp" alt="Combiflam">
+    <h3>Ceflox-D</h3>
+    <p style="font-size: 14px; color: #777;">used to treat bacterial infections and itching in ears and eyes</p> 
+    <p>20ml | ₹130</p>
+    <button onclick="addToCart('Ceflox-D',130,'ceflox.webp')">Add to Cart</button>
+  </div>
+</div>
+
+
+<!-- ===== Footer ===== -->
+<footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+    
+    <div style="flex: 1 1 300px;">
+      <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+      <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+        MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+        Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+      </p>
+    </div>
+    
+    <div style="flex: 1 1 300px;">
+      <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+      <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+       Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+        Jahnavi – Full Stack Developer & UI Designer<br>
+        Srikanth – Full Stack Developer & UI Designer<br>
+        Chaitanya – Full Stack Developer & UI Designer
+      </p>
+      <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+    </div>
+    
+  </div>
+
+  <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+
+  <div style="text-align: center; font-size: 13px; color: #ccc;">
+    &copy; 2025 MediFinder. All rights reserved.
+  </div>
+</footer>
+
+
+
+
+ <!-- LOGIN MODAL (place this at the bottom of body) -->
+ <div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2>Login</h2>
+    <label for="mobile">Enter your number:</label>
+    <input type="text" id="mobile" placeholder="Enter mobile number">
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
+</div>
+<script src="navbar.js"></script>
+<script src="cart.js"></script>
+</body>
+</html>

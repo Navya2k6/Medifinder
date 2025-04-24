@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | MediFinder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .profile-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 3px solid #63bc78;
+    }
+    .profile-info h2 {
+      margin: 0;
+      color: #333;
+    }
+    .profile-info p {
+      margin: 5px 0;
+      color: #777;
+    }
+    .edit-btn {
+      background-color: #63bc78;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    .profile-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .detail-section {
+      flex: 1;
+      min-width: 300px;
+    }
+    .detail-section h3 {
+      color: #63bc78;
+      margin-bottom: 15px;
+    }
+    .detail-item {
+      margin-bottom: 15px;
+    }
+    .detail-item label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    .detail-item p {
+      margin: 0;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 5px;
+    }
+    .address-card {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 4px solid #63bc78;
+    }
+    .address-card p {
+      margin: 5px 0;
+    }
+    .default-address {
+      color: #63bc78;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">MediFinder</div>
+      <button class="mobile-menu-btn">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="homepage.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Medicines ▾</a>
+          <div class="dropdown-content">
+            <a href="all.html">All Medicines</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#">Healthcare ▾</a>
+          <div class="dropdown-content">
+            <a href="personalcare.html">Personal Care</a>
+            <a href="#">Nutrition Care</a>
+          </div>
+        </li>
+        <li><a href="Diagnostics.html">Diagnostics</a></li>
+        <li><a href="img-two.html">Offers</a></li>
+        <li>
+          <a href="#" class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </li>
+        <li id="accountNavItem">
+          <a href="#">My Account ▾</a>
+          <div class="dropdown-content">
+            <div class="user-info">
+              <div class="user-name">John Doe</div>
+              <div class="user-email">john@example.com</div>
+            </div>
+            <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+            <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+           
+            <div class="dropdown-divider"></div>
+            <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+            <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Picture" class="profile-pic">
+      <div class="profile-info">
+        <h2>John Doe</h2>
+        <p>Member since: January 2024</p>
+        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+      </div>
+      <button class="edit-btn"><i class="fas fa-edit"></i> Edit Profile</button>
+    </div>
+
+    <div class="profile-details">
+      <div class="detail-section">
+        <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+        <div class="detail-item">
+          <label>Full Name</label>
+          <p>John Doe</p>
+        </div>
+        <div class="detail-item">
+          <label>Email</label>
+          <p>john@example.com</p>
+        </div>
+        <div class="detail-item">
+          <label>Mobile Number</label>
+          <p>+91 9876543210</p>
+        </div>
+        <div class="detail-item">
+          <label>Date of Birth</label>
+          <p>15 June 1990</p>
+        </div>
+        <div class="detail-item">
+          <label>Gender</label>
+          <p>Male</p>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h3><i class="fas fa-map-marker-alt"></i> Addresses</h3>
+        <div class="address-card">
+          <p class="default-address">Default Address</p>
+          <p><strong>Home</strong></p>
+          <p>123, Green Park Apartments</p>
+          <p>MG Road, Bangalore</p>
+          <p>Karnataka - 560001</p>
+          <p>Phone: +91 9876543210</p>
+        </div>
+        <div class="address-card">
+          <p><strong>Work</strong></p>
+          <p>456, Tech Park Building</p>
+          <p>Whitefield, Bangalore</p>
+          <p>Karnataka - 560066</p>
+          <p>Phone: +91 9876543210</p>
+        </div>
+        <button class="edit-btn" style="margin-top: 10px;"><i class="fas fa-plus"></i> Add New Address</button>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+      <div style="flex: 1 1 300px;">
+        <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+        <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+          MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+          Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+        </p>
+      </div>
+      <div style="flex: 1 1 300px;">
+        <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+        <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+          Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+          Jahnavi – Full Stack Developer & UI Designer<br>
+          Srikanth – Full Stack Developer & UI Designer<br>
+          Chaitanya – Full Stack Developer & UI Designer
+        </p>
+      </div>
+    </div>
+    <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+    <div style="text-align: center; font-size: 13px; color: #ccc;">
+      &copy; 2025 MediFinder. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="navbar.js"></script>
+</body>
+</html>

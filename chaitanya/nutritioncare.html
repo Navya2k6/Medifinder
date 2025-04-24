@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nutrition Care | MediFinder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="cart.css">
+  <style>
+   h1 {
+      font-weight:700;
+    }
+    #d {
+      color: rgb(1, 1, 0);
+    }
+
+    .search-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-container input {
+      width: 50%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      border: 2px solid black;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 220px;
+      padding: 15px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+    .product-card p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+    .product-card button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .product-card button:hover{
+        background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="all.html">All Medicines</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="personalcare.html">Personal Care</a>
+                        <a href="nutritioncare.html">Nutrition Care</a>
+                    </div>
+                </li>
+                <li><a href="Diagnostics.html">Diagnostics</a></li>
+                <li><a href="img-two.html">Offers</a></li>
+                
+                <!-- Cart icon in nav -->
+                <li>
+                    <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </li>
+                
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        
+                        <div class="dropdown-divider"></div>
+                        <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+          <div class="cart-title">Your Cart</div>
+          <div class="close-cart" onclick="toggleCart()">×</div>
+        </div>
+        <div class="cart-items" id="cartItems">
+          <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+          Total: ₹<span id="cartTotal">0</span>
+        </div>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+        
+    <br>
+  
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder=" 🔍Search nutrition products...">
+    </div>
+
+    <h2 style="text-align:center;">Products for Nutrition Care</h2>
+    <div class="product-grid" id="productGrid">
+        <p id="no-results" style="display: none; text-align: center; font-size: 1.2rem; color: red;">
+            No products found matching your search.
+        </p>
+        
+        <div class="product-card">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2022/12/PJ/HV/BU/163839609/muscleblaze-multivitamin-tabs-60-tabs.jpg" alt="Multivitamin Tablets">
+            <h3>Multivitamin Tablets</h3>
+            <p style="font-size: 14px; color: #777;">Daily essential vitamins</p> 
+            <p>60 tablets | ₹450 | 1 bottle</p>
+            <button onclick="addToCart('Multivitamin Tablets',450,'https://5.imimg.com/data5/SELLER/Default/2022/12/PJ/HV/BU/163839609/muscleblaze-multivitamin-tabs-60-tabs.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.netmeds.com/images/product-v1/600x600/930167/pro360_gold_whey_100_protein_powder_chocolate_flavour_1_kg_0_0.jpg" alt="Protein Powder">
+            <h3>Protein Powder</h3>
+            <p style="font-size: 14px; color: #777;">Whey protein for strength</p> 
+            <p>1 kg | ₹1200 | 1 jar</p>
+            <button onclick="addToCart('Protein Powder',1200,'https://www.netmeds.com/images/product-v1/600x600/930167/pro360_gold_whey_100_protein_powder_chocolate_flavour_1_kg_0_0.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images-static.nykaa.com/media/catalog/product/f/d/fd37fc6HIMAA00000009_1.jpg" alt="Omega-3 Capsules">
+            <h3>Omega-3 Capsules</h3>
+            <p style="font-size: 14px; color: #777;">Supports heart & brain</p> 
+            <p>90 capsules | ₹650 | 1 bottle</p>
+            <button onclick="addToCart('Omega-3 Capsules',650,'https://images-static.nykaa.com/media/catalog/product/f/d/fd37fc6HIMAA00000009_1.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://inlifehealthcare.com/cdn/shop/files/inlife-calcium-with-vitamin-d3-supplement-60-tablets-778674.jpg?v=1736226638" alt="Calcium Tablets">
+            <h3>Calcium Tablets</h3>
+            <p style="font-size: 14px; color: #777;">Bone health supplement</p> 
+            <p>60 tablets | ₹300 | 1 bottle</p>
+            <button onclick="addToCart('Calcium Tablets',300,'https://inlifehealthcare.com/cdn/shop/files/inlife-calcium-with-vitamin-d3-supplement-60-tablets-778674.jpg?v=1736226638')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61mjAUurmNL._AC_UF1000,1000_QL80_.jpg" alt="Iron Supplement">
+            <h3>Iron Supplement</h3>
+            <p style="font-size: 14px; color: #777;">Combats fatigue & anemia</p> 
+            <p>30 tablets | ₹180 | 1 strip</p>
+            <button onclick="addToCart('Iron Supplement',180,'https://m.media-amazon.com/images/I/61mjAUurmNL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71TJ-wO9PHL._AC_UF1000,1000_QL80_.jpg" alt="Vitamin D3">
+            <h3>Vitamin D3</h3>
+            <p style="font-size: 14px; color: #777;">Boosts immunity & bone strength</p> 
+            <p>30 capsules | ₹220 | 1 bottle</p>
+            <button onclick="addToCart('Vitamin D3',220,'https://m.media-amazon.com/images/I/71TJ-wO9PHL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.oziva.in/cdn/shop/files/1_33d72e8c-5cc3-420c-a959-0bc69c528df3.jpg?v=1709027781" alt="Meal Replacement Shake">
+            <h3>Meal Replacement Shake</h3>
+            <p style="font-size: 14px; color: #777;">Balanced nutrition shake</p> 
+            <p>500 g | ₹950 | 1 jar</p>
+            <button onclick="addToCart('Meal Replacement Shake',950,'https://www.oziva.in/cdn/shop/files/1_33d72e8c-5cc3-420c-a959-0bc69c528df3.jpg?v=1709027781')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://thehealthspanco.com/cdn/shop/files/3.1_9d9cc7ff-42f9-4a5a-ba90-be78a4ad51b9.png?v=1740038496&width=1080" alt="Probiotic Drink">
+            <h3>Probiotic Drink</h3>
+            <p style="font-size: 14px; color: #777;">Improves gut health</p> 
+            <p>200 ml | ₹80 | 1 bottle</p>
+            <button onclick="addToCart('Probiotic Drink',80,'https://thehealthspanco.com/cdn/shop/files/3.1_9d9cc7ff-42f9-4a5a-ba90-be78a4ad51b9.png?v=1740038496&width=1080')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2023/3/296831078/TB/WS/SB/11787559/dextrose-with-vitamin-c-zinc-electrolytes-lactobacillus-sachet-500x500.jpg" alt="Electrolyte Sachets">
+            <h3>Electrolyte Sachets</h3>
+            <p style="font-size: 14px; color: #777;">Hydration on the go</p> 
+            <p>10 sachets | ₹100 | 1 box</p>
+            <button onclick="addToCart('Electrolyte Sachets',100,'https://5.imimg.com/data5/SELLER/Default/2023/3/296831078/TB/WS/SB/11787559/dextrose-with-vitamin-c-zinc-electrolytes-lactobacillus-sachet-500x500.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/511GWAvwvrL._AC_UF1000,1000_QL80_.jpg" alt="Energy Bar">
+            <h3>Energy Bar</h3>
+            <p style="font-size: 14px; color: #777;">Instant energy snack</p> 
+            <p>50 g | ₹50 | 1 bar</p>
+            <button onclick="addToCart('Energy Bar',50,'https://m.media-amazon.com/images/I/511GWAvwvrL._AC_UF1000,1000_QL80_.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Cdx-VkSvBSdZL7Qzjm5YUVZotEWKNtqGUQ&s" alt="Zinc Tablets">
+            <h3>Zinc Tablets</h3>
+            <p style="font-size: 14px; color: #777;">Boosts immune function</p> 
+            <p>30 tablets | ₹170 | 1 strip</p>
+            <button onclick="addToCart('Zinc Tablets',170,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Cdx-VkSvBSdZL7Qzjm5YUVZotEWKNtqGUQ&s')">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2025/4/501181458/SS/MC/OR/37307839/liver-care-syrup-1-500x500.jpg" alt="Herbal Tonic">
+            <h3>Herbal Tonic</h3>
+            <p style="font-size: 14px; color: #777;">Natural health booster</p> 
+            <p>250 ml | ₹220 | 1 bottle</p>
+            <button onclick="addToCart('Herbal Tonic',220,'https://5.imimg.com/data5/SELLER/Default/2025/4/501181458/SS/MC/OR/37307839/liver-care-syrup-1-500x500.jpg')">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+            <div style="flex: 1 1 300px;">
+                <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+                <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+                MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+                Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+                </p>
+            </div>
+            
+            <div style="flex: 1 1 300px;">
+                <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+                <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+                Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+                Jahnavi – Full Stack Developer & UI Designer<br>
+                Srikanth – Full Stack Developer & UI Designer<br>
+                Chaitanya – Full Stack Developer & UI Designer
+                </p>
+            </div>
+            
+        </div>
+    
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+    
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+            &copy; 2025 MediFinder. All rights reserved.
+        </div>
+    </footer>
+  
+    <!-- LOGIN MODAL (place this at the bottom of body) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Login</h2>
+            <label for="mobile">Enter your number:</label>
+            <input type="text" id="mobile" placeholder="Enter mobile number">
+            <button onclick="sendOTP()">Send OTP</button>
+        </div>
+    </div>
+  
+    <script src="navbar.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const productCards = document.querySelectorAll('.product-card');
+        const noResults = document.getElementById('no-results');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            let hasResults = false;
+
+            productCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p:nth-of-type(1)').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = '';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>

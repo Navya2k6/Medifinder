@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="navbar.css">
+  
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        /* body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        } */
+
+        .account-settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-section h2 {
+            font-size: 1.2em;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .avatar-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin-right: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-upload {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .avatar-upload-btn {
+            margin-bottom: 5px;
+        }
+
+        .delete-account {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .delete-account button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-account button:hover {
+            background-color: #c0392b;
+        }
+
+        .password-strength {
+            height: 5px;
+            background-color: #eee;
+            margin-top: 5px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #e74c3c;
+            transition: width 0.3s, background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MediFinder</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Medicines ▾</a>
+                    <div class="dropdown-content">
+                        <a href="all.html">All Medicines</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Healthcare ▾</a>
+                    <div class="dropdown-content">
+                        <a href="personalcare.html">Personal Care</a>
+                        <a href="nutritioncare.html">Nutrition Care</a>
+                    </div>
+                </li>
+                <li><a href="Diagnostics.html">Diagnostics</a></li>
+                <li><a href="img-two.html">Offers</a></li>
+                
+  
+  
+  
+                 <!-- Cart icon in nav -->
+               <li>
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="cart-count" id="cartCount">0</span>
+                </a>
+              </li>
+              
+  
+  
+  
+  
+                <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+                <li id="accountNavItem" style="display: none;">
+                    <a href="#">My Account ▾</a>
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <div class="user-name">User Name</div>
+                            <div class="user-email">user@example.com</div>
+                        </div>
+                        <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  
+       <div class="cart-modal" id="cartModal">
+      <div class="cart-header">
+        <div class="cart-title">Your Cart</div>
+        <div class="close-cart" onclick="toggleCart()">×</div>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be added here dynamically -->
+      </div>
+      <div class="cart-total">
+        Total: ₹<span id="cartTotal">0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+        
+
+
+    <div class="account-settings-container">
+        <h1>Account Settings</h1>
+        
+        <form id="accountSettingsForm">
+            <div class="form-section">
+                <h2>Profile Picture</h2>
+                <div class="avatar-section">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/80" alt="Profile" id="avatarImage">
+                    </div>
+                    <div class="avatar-upload">
+                        <button type="button" class="btn-secondary avatar-upload-btn" id="uploadAvatarBtn">Upload New Photo</button>
+                        <button type="button" class="btn-secondary" id="removeAvatarBtn">Remove Photo</button>
+                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Profile Information</h2>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" name="bio" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Change Password</h2>
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword" name="currentPassword">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="newPassword">
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Privacy Settings</h2>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="showEmail" name="showEmail">
+                    <label for="showEmail">Show email address on profile</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="searchVisibility" name="searchVisibility" checked>
+                    <label for="searchVisibility">Allow search engines to link to my profile</label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Notifications</h2>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="emailNotifications" name="emailNotifications" checked>
+                    <label for="emailNotifications">Email notifications</label>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="pushNotifications" name="pushNotifications" checked>
+                    <label for="pushNotifications">Push notifications</label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </div>
+        </form>
+
+        <div class="delete-account">
+            <h2>Danger Zone</h2>
+            <button type="button" id="deleteAccountBtn">Delete Account</button>
+        </div>
+    </div>
+
+
+    <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: #ccc;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+
+       <!-- LOGIN MODAL (place this at the bottom of body) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Login</h2>
+      <label for="mobile">Enter your number:</label>
+      <input type="text" id="mobile" placeholder="Enter mobile number">
+      <button onclick="sendOTP()">Send OTP</button>
+    </div>
+  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data (simulated)
+            loadUserData();
+
+            // Avatar upload functionality
+            const uploadBtn = document.getElementById('uploadAvatarBtn');
+            const removeBtn = document.getElementById('removeAvatarBtn');
+            const avatarUpload = document.getElementById('avatarUpload');
+            const avatarImage = document.getElementById('avatarImage');
+
+            uploadBtn.addEventListener('click', function() {
+                avatarUpload.click();
+            });
+
+            avatarUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        avatarImage.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            removeBtn.addEventListener('click', function() {
+                avatarImage.src = 'https://via.placeholder.com/80';
+            });
+
+            // Password strength indicator
+            const newPassword = document.getElementById('newPassword');
+            const passwordStrengthBar = document.getElementById('passwordStrengthBar');
+
+            newPassword.addEventListener('input', function() {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+                
+                passwordStrengthBar.style.width = strength.percentage + '%';
+                passwordStrengthBar.style.backgroundColor = strength.color;
+            });
+
+            // Form submission
+            const form = document.getElementById('accountSettingsForm');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveChanges();
+            });
+
+            // Cancel button
+            const cancelBtn = document.getElementById('cancelBtn');
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('Discard all changes?')) {
+                    loadUserData();
+                }
+            });
+
+            // Delete account button
+            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+            deleteAccountBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+                    alert('Account deletion requested. In a real app, this would delete your account.');
+                    // Here you would typically make an API call to delete the account
+                }
+            });
+
+            // Helper functions
+            function loadUserData() {
+                // In a real app, this would come from your backend
+                document.getElementById('username').value = 'johndoe';
+                document.getElementById('email').value = 'john@example.com';
+                document.getElementById('name').value = 'John Doe';
+                document.getElementById('bio').value = 'Web developer and designer';
+                document.getElementById('showEmail').checked = false;
+                document.getElementById('searchVisibility').checked = true;
+                document.getElementById('emailNotifications').checked = true;
+                document.getElementById('pushNotifications').checked = true;
+            }
+
+            function saveChanges() {
+                // In a real app, this would send data to your backend
+                const formData = {
+                    username: document.getElementById('username').value,
+                    email: document.getElementById('email').value,
+                    name: document.getElementById('name').value,
+                    bio: document.getElementById('bio').value,
+                    showEmail: document.getElementById('showEmail').checked,
+                    searchVisibility: document.getElementById('searchVisibility').checked,
+                    emailNotifications: document.getElementById('emailNotifications').checked,
+                    pushNotifications: document.getElementById('pushNotifications').checked
+                };
+
+                // Check if password is being changed
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (currentPassword || newPassword || confirmPassword) {
+                    if (newPassword !== confirmPassword) {
+                        alert('New passwords do not match!');
+                        return;
+                    }
+                    formData.currentPassword = currentPassword;
+                    formData.newPassword = newPassword;
+                }
+
+                console.log('Form data to be saved:', formData);
+                alert('Settings saved successfully! (This is a demo - no data was actually saved)');
+            }
+
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+                
+                // Length check
+                if (password.length > 0) strength += 10;
+                if (password.length >= 8) strength += 20;
+                if (password.length >= 12) strength += 20;
+                
+                // Character variety checks
+                if (/[A-Z]/.test(password)) strength += 10;
+                if (/[a-z]/.test(password)) strength += 10;
+                if (/[0-9]/.test(password)) strength += 10;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+                
+                // Cap at 100
+                strength = Math.min(strength, 100);
+                
+                // Determine color
+                let color;
+                if (strength < 30) color = '#e74c3c'; // Red
+                else if (strength < 70) color = '#f39c12'; // Orange
+                else color = '#2ecc71'; // Green
+                
+                return { percentage: strength, color: color };
+            }
+        });
+    </script>
+  
+
+      <script src="navbar.js">
+    </script>
+    <script src="cart.js"></script>
+      
+</body>
+</html>

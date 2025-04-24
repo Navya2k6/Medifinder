@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MavensPick Clone</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediFinder - Order Medicines</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="cart.css">
-  <link rel="stylesheet" href="img-one.css" />
+  <link rel="stylesheet" href="cart.css">
   <link rel="stylesheet" href="navbar.css">
+  <style>
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .container h2 {
+      font-family: 'Cursive';
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+    }
+
+    .card ul {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    .btn {
+      background-color: #ec4141;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn:hover {
+      background-color: #bb0000;
+    }
+  </style>
 </head>
-<body style="background-color: rgb(32, 31, 31);">
+
+<body>
   <nav class="navbar">
     <div class="nav-container">
         <div class="logo">MediFinder</div>
@@ -17,31 +73,33 @@
         <ul class="nav-links" id="nav-links">
             <li><a href="homepage.html">Home</a></li>
             <li class="dropdown">
-              <a href="#">Medicines ▾</a>
-              <div class="dropdown-content">
-                  <a href="all.html">All Medicines</a>
-              </div>
+                <a href="#">Medicines ▾</a>
+                <div class="dropdown-content">
+                    <a href="all.html">All Medicines</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Healthcare ▾</a>
+                <div class="dropdown-content">
+                    <a href="personalcare.html">Personal Care</a>
+                    <a href="nutritioncare.html">Nutrition Care</a>
+                </div>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
+            
+
+
+
+             <!-- Cart icon in nav -->
+           <li>
+            <a href="#" class="cart-icon" onclick="toggleCart()">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count" id="cartCount">0</span>
+            </a>
           </li>
-          <li class="dropdown">
-              <a href="#">Healthcare ▾</a>
-              <div class="dropdown-content">
-                  <a href="personalcare.html">Personal Care</a>
-                  <a href="nutritioncare.html">Nutrition Care</a>
-              </div>
-          </li>
-          <li><a href="Diagnostics.html">Diagnostics</a></li>
-          <li><a href="img-two.html">Offers</a></li>
+          
 
-
-
-        
-               <!-- Cart icon in nav -->
-               <li>
-                <a href="#" class="cart-icon" onclick="toggleCart()">
-                  <i class="fas fa-shopping-cart"></i>
-                  <span class="cart-count" id="cartCount">0</span>
-                </a>
-              </li>
 
 
 
@@ -55,7 +113,7 @@
                     </div>
                     <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
                     <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
-                  
+                    
                     <div class="dropdown-divider"></div>
                     <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
                     <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -65,9 +123,7 @@
     </div>
 </nav>
 
-
-
-<div class="cart-modal" id="cartModal">
+   <div class="cart-modal" id="cartModal">
   <div class="cart-header">
     <div class="cart-title">Your Cart</div>
     <div class="close-cart" onclick="toggleCart()">×</div>
@@ -81,42 +137,48 @@
   <button class="checkout-btn" onclick="checkout()">Checkout</button>
 </div>
     
-      
-       <br>
-  
+  <!-- <header>
+    <h1>MediFinder</h1>
+    <nav>
+      <a href="#">Health Store</a>
+      <a href="#">Pharmacy</a>
+      <a href="#">Diagnostics</a>
+      <a href="#">Doctors</a>
+    </nav>
+  </header> -->
 
-  <section class="banner">
-    
-      <img src="bgi1.png" alt="products" style="width: 100vw;">
-       <div class="centered-text">High Quality Daily Essentials</div>
-  </section>
-  <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
-  
-  <section class="categories">
-    <h2>Shop By Categories</h2>
-    <div class="category-container">
-      <div class="category">
-      <a href="personalcare.html"> <img src="personal-care.jpg" alt="Personal Care"/> </a> 
-        <p>Personal Care</p>
+  <div class="container">
+    <h2>3 ways to order your medicine</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/purchase-order.png" alt="Buy Online">
+        <h3>Buy Online</h3>
+        <ul>
+          <li>Search and select the medicines you want</li>
+          <li>Upload your Doctor Written Medicines List at checkout</li>
+          <li>Choose home delivery or store pick up</li>
+        </ul>
       </div>
-      <div class="category">
-        <img src="3.webp" alt="Household Needs" style="height:27vh">
-        <p>Household Needs</p>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/shopping-cart-loaded.png" alt="Click and Pick">
+        <h3>Click and Pick</h3>
+        <ul>
+          <li>Search and select the medicines you want</li>
+          <li>Select the MediFinder store to pick up</li>
+          <li>Show the prescription at the store</li>
+        </ul>
       </div>
-      <div class="category">
-       <a href="nutritioncare.html"> <img src="health.webp" alt="Health & Nutrition"/> </a>
-        <p>Health & Nutrition</p>
+      <div class="card">
+        <img src="https://img.icons8.com/ios-filled/100/000000/call-transfer.png" alt="Receive a Call Back">
+        <h3>Receive a Call Back</h3>
+        <ul>
+          <li>Our representative will call and confirm the order</li>
+        </ul>
+        <button class="btn">Upload Your Medicine List</button>
       </div>
-      <div class="category">
-        <img src="baby.webp" alt="Baby Care"/>
-        <p>Baby Care</p>
-      </div>
-      <!-- <div class="category">
-        <img src="https://i.imgur.com/xTxPIBE.png" alt="Sanitary & Hygiene"/>
-        <p>Sanitary & Hygiene</p>
-      </div> -->
     </div>
-  </section>
+  </div>
+
   <!-- ===== Footer ===== -->
   <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
     <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
@@ -164,6 +226,6 @@
 </script>
 <script src="cart.js"></script>
   
-  
 </body>
+
 </html>

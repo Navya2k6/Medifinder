@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders | MediFinder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .orders-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .page-title {
+      color: #333;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #63bc78;
+    }
+    .order-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #eee;
+    }
+    .order-id {
+      font-weight: bold;
+      color: #63bc78;
+    }
+    .order-date {
+      color: #777;
+    }
+    .order-status {
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .status-delivered {
+      background: #e1f5e1;
+      color: #2e7d32;
+    }
+    .status-shipped {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+    .status-cancelled {
+      background: #ffebee;
+      color: #c62828;
+    }
+    .order-body {
+      padding: 20px;
+    }
+    .product-item {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #eee;
+    }
+    .product-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-right: 15px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+    }
+    .product-info {
+      flex: 1;
+    }
+    .product-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .product-price {
+      color: #333;
+      font-weight: bold;
+    }
+    .product-qty {
+      color: #777;
+    }
+    .order-summary {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+    .order-total {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .order-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .action-btn {
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      border: none;
+    }
+    .btn-primary {
+      background: #63bc78;
+      color: white;
+    }
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    .no-orders {
+      text-align: center;
+      padding: 50px 0;
+      color: #777;
+    }
+    .no-orders i {
+      font-size: 50px;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">MediFinder</div>
+      <button class="mobile-menu-btn">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="homepage.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Medicines ▾</a>
+          <div class="dropdown-content">
+            <a href="all.html">All Medicines</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#">Healthcare ▾</a>
+          <div class="dropdown-content">
+            <a href="personalcare.html">Personal Care</a>
+            <a href="#">Nutrition Care</a>
+          </div>
+        </li>
+        <li><a href="Diagnostics.html">Diagnostics</a></li>
+        <li><a href="img-two.html">Offers</a></li>
+        <li>
+          <a href="#" class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </li>
+        <li id="accountNavItem">
+          <a href="#">My Account ▾</a>
+          <div class="dropdown-content">
+            <div class="user-info">
+              <div class="user-name">John Doe</div>
+              <div class="user-email">john@example.com</div>
+            </div>
+            <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+            <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+           
+            <div class="dropdown-divider"></div>
+            <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+            <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="orders-container">
+    <h1 class="page-title">My Orders</h1>
+
+    <div class="order-card">
+      <div class="order-header">
+        <div>
+          <span class="order-id">Order #MF20250315</span>
+          <span class="order-date">Placed on 15 March 2025</span>
+        </div>
+        <div class="order-status status-delivered">Delivered</div>
+      </div>
+      <div class="order-body">
+        <div class="product-item">
+          <img src="https://5.imimg.com/data5/SELLER/Default/2022/12/PJ/HV/BU/163839609/muscleblaze-multivitamin-tabs-60-tabs.jpg" class="product-img">
+          <div class="product-info">
+            <div class="product-name">Multivitamin Tablets</div>
+            <div class="product-desc">Daily essential vitamins</div>
+            <div class="product-price">₹450</div>
+            <div class="product-qty">Qty: 1</div>
+          </div>
+        </div>
+        <div class="product-item">
+          <img src="https://m.media-amazon.com/images/I/71TJ-wO9PHL._AC_UF1000,1000_QL80_.jpg" class="product-img">
+          <div class="product-info">
+            <div class="product-name">Vitamin D3</div>
+            <div class="product-desc">Boosts immunity & bone strength</div>
+            <div class="product-price">₹220</div>
+            <div class="product-qty">Qty: 2</div>
+          </div>
+        </div>
+        <div class="order-summary">
+          <div class="order-total">Total: ₹890</div>
+          <div class="order-actions">
+            <button class="action-btn btn-primary">Reorder</button>
+            <button class="action-btn btn-secondary">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <div class="order-header">
+        <div>
+          <span class="order-id">Order #MF20250228</span>
+          <span class="order-date">Placed on 28 February 2025</span>
+        </div>
+        <div class="order-status status-shipped">Shipped</div>
+      </div>
+      <div class="order-body">
+        <div class="product-item">
+          <img src="https://www.netmeds.com/images/product-v1/600x600/930167/pro360_gold_whey_100_protein_powder_chocolate_flavour_1_kg_0_0.jpg" class="product-img">
+          <div class="product-info">
+            <div class="product-name">Protein Powder</div>
+            <div class="product-desc">Whey protein for strength</div>
+            <div class="product-price">₹1200</div>
+            <div class="product-qty">Qty: 1</div>
+          </div>
+        </div>
+        <div class="order-summary">
+          <div class="order-total">Total: ₹1200</div>
+          <div class="order-actions">
+            <button class="action-btn btn-primary">Track Order</button>
+            <button class="action-btn btn-secondary">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-card">
+      <div class="order-header">
+        <div>
+          <span class="order-id">Order #MF20250110</span>
+          <span class="order-date">Placed on 10 January 2025</span>
+        </div>
+        <div class="order-status status-cancelled">Cancelled</div>
+      </div>
+      <div class="order-body">
+        <div class="product-item">
+          <img src="https://inlifehealthcare.com/cdn/shop/files/inlife-calcium-with-vitamin-d3-supplement-60-tablets-778674.jpg?v=1736226638" class="product-img">
+          <div class="product-info">
+            <div class="product-name">Calcium Tablets</div>
+            <div class="product-desc">Bone health supplement</div>
+            <div class="product-price">₹300</div>
+            <div class="product-qty">Qty: 1</div>
+          </div>
+        </div>
+        <div class="product-item">
+          <img src="https://m.media-amazon.com/images/I/61mjAUurmNL._AC_UF1000,1000_QL80_.jpg" class="product-img">
+          <div class="product-info">
+            <div class="product-name">Iron Supplement</div>
+            <div class="product-desc">Combats fatigue & anemia</div>
+            <div class="product-price">₹180</div>
+            <div class="product-qty">Qty: 1</div>
+          </div>
+        </div>
+        <div class="order-summary">
+          <div class="order-total">Total: ₹480</div>
+          <div class="order-actions">
+            <button class="action-btn btn-primary">Buy Again</button>
+            <button class="action-btn btn-secondary">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+      <div style="flex: 1 1 300px;">
+        <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+        <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+          MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+          Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+        </p>
+      </div>
+      <div style="flex: 1 1 300px;">
+        <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+        <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+          Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+          Jahnavi – Full Stack Developer & UI Designer<br>
+          Srikanth – Full Stack Developer & UI Designer<br>
+          Chaitanya – Full Stack Developer & UI Designer
+        </p>
+      </div>
+    </div>
+    <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+    <div style="text-align: center; font-size: 13px; color: #ccc;">
+      &copy; 2025 MediFinder. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="navbar.js"></script>
+</body>
+</html>

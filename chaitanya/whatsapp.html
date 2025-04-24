@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDIFINDER - Order Medicines via WhatsApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="navbar.css">
     <style>
         /* * {
@@ -141,24 +143,34 @@
                 <li class="dropdown">
                     <a href="#">Medicines ▾</a>
                     <div class="dropdown-content">
-                        <a href="#">All Medicines</a>
-                        <a href="#">Prescription Drugs</a>
-                        <a href="#">OTC Products</a>
-                        <a href="#">Ayurvedic</a>
-                        <a href="#">Homeopathy</a>
+                        <a href="all.html">All Medicines</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="#">Healthcare ▾</a>
                     <div class="dropdown-content">
-                        <a href="#">Doctor Consultations</a>
-                        <a href="#">Lab Tests</a>
-                        <a href="#">Health Checkups</a>
-                        <a href="#">Surgical Supplies</a>
+                        <a href="personalcare.html">Personal Care</a>
+                        <a href="nutritioncare.html">Nutrition Care</a>
                     </div>
                 </li>
                 <li><a href="Diagnostics.html">Diagnostics</a></li>
                 <li><a href="img-two.html">Offers</a></li>
+                
+  
+  
+  
+                 <!-- Cart icon in nav -->
+               <li>
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="cart-count" id="cartCount">0</span>
+                </a>
+              </li>
+              
+  
+  
+  
+  
                 <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
                 <li id="accountNavItem" style="display: none;">
                     <a href="#">My Account ▾</a>
@@ -167,18 +179,32 @@
                             <div class="user-name">User Name</div>
                             <div class="user-email">user@example.com</div>
                         </div>
-                        <a href="#"><i class="fas fa-user"></i> My Profile</a>
-                        <a href="#"><i class="fas fa-shopping-bag"></i> My Orders</a>
-                        <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                      
                         <div class="dropdown-divider"></div>
-                        <a href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                        <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
                         <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
-
+  
+       <div class="cart-modal" id="cartModal">
+      <div class="cart-header">
+        <div class="cart-title">Your Cart</div>
+        <div class="close-cart" onclick="toggleCart()">×</div>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be added here dynamically -->
+      </div>
+      <div class="cart-total">
+        Total: ₹<span id="cartTotal">0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+        
     <!--------------------------------------------------------------------------------------------------->
     <div class="container">
         <div class="whatsapp-section">
@@ -249,6 +275,7 @@
 
       <script src="navbar.js">
     </script>
+    <script src="cart.js"></script>
       
 </body>
 </html>
