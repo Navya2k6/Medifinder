@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nutrition Care | MediFinder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+        background-color: #63bc78;
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+      font-size: 3rem;
+      border-radius: 10px;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .search-box {
+      position: relative;
+      width: 50%;
+      max-width: 400px;
+    }
+    .search-box input {
+      padding: 10px 40px 10px 20px;
+      width: 100%;
+      border: 2px solid #28a745;
+      border-radius: 20px;
+      font-size: 16px;
+    }
+    .search-box i {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      color: #28a745;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 220px;
+      padding: 15px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+    .product-card p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+    .product-card button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>MEDIFINDER</header>
+
+  <div class="search-container">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍Search nutrition products...">
+      
+    </div>
+  </div>
+
+  <h2 style="text-align:center;">Products for Nutrition Care</h2>
+  <div class="product-grid" id="productGrid"></div>
+
+  <script>
+    const products = [
+      { name: "Multivitamin Tablets", desc: "Daily essential vitamins", weight: "60 tablets", price: "₹450", qty: "1 bottle", img: "https://5.imimg.com/data5/SELLER/Default/2022/12/PJ/HV/BU/163839609/muscleblaze-multivitamin-tabs-60-tabs.jpg" },
+      { name: "Protein Powder", desc: "Whey protein for strength", weight: "1 kg", price: "₹1200", qty: "1 jar", img: "https://www.netmeds.com/images/product-v1/600x600/930167/pro360_gold_whey_100_protein_powder_chocolate_flavour_1_kg_0_0.jpg" },
+      { name: "Omega-3 Capsules", desc: "Supports heart & brain", weight: "90 capsules", price: "₹650", qty: "1 bottle", img: "https://images-static.nykaa.com/media/catalog/product/f/d/fd37fc6HIMAA00000009_1.jpg" },
+      { name: "Calcium Tablets", desc: "Bone health supplement", weight: "60 tablets", price: "₹300", qty: "1 bottle", img: "https://inlifehealthcare.com/cdn/shop/files/inlife-calcium-with-vitamin-d3-supplement-60-tablets-778674.jpg?v=1736226638" },
+      { name: "Iron Supplement", desc: "Combats fatigue & anemia", weight: "30 tablets", price: "₹180", qty: "1 strip", img: "https://m.media-amazon.com/images/I/61mjAUurmNL._AC_UF1000,1000_QL80_.jpg" },
+      { name: "Vitamin D3", desc: "Boosts immunity & bone strength", weight: "30 capsules", price: "₹220", qty: "1 bottle", img: "https://m.media-amazon.com/images/I/71TJ-wO9PHL._AC_UF1000,1000_QL80_.jpg" },
+      { name: "Meal Replacement Shake", desc: "Balanced nutrition shake", weight: "500 g", price: "₹950", qty: "1 jar", img: "https://www.oziva.in/cdn/shop/files/1_33d72e8c-5cc3-420c-a959-0bc69c528df3.jpg?v=1709027781" },
+      { name: "Probiotic Drink", desc: "Improves gut health", weight: "200 ml", price: "₹80", qty: "1 bottle", img: "https://thehealthspanco.com/cdn/shop/files/3.1_9d9cc7ff-42f9-4a5a-ba90-be78a4ad51b9.png?v=1740038496&width=1080" },
+      { name: "Electrolyte Sachets", desc: "Hydration on the go", weight: "10 sachets", price: "₹100", qty: "1 box", img: "https://5.imimg.com/data5/SELLER/Default/2023/3/296831078/TB/WS/SB/11787559/dextrose-with-vitamin-c-zinc-electrolytes-lactobacillus-sachet-500x500.jpg" },
+      { name: "Energy Bar", desc: "Instant energy snack", weight: "50 g", price: "₹50", qty: "1 bar", img: "https://m.media-amazon.com/images/I/511GWAvwvrL._AC_UF1000,1000_QL80_.jpg" },
+      { name: "Zinc Tablets", desc: "Boosts immune function", weight: "30 tablets", price: "₹170", qty: "1 strip", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Cdx-VkSvBSdZL7Qzjm5YUVZotEWKNtqGUQ&s" },
+      { name: "Herbal Tonic", desc: "Natural health booster", weight: "250 ml", price: "₹220", qty: "1 bottle", img: "https://5.imimg.com/data5/SELLER/Default/2025/4/501181458/SS/MC/OR/37307839/liver-care-syrup-1-500x500.jpg" },
+      { name: "BCAA Powder", desc: "Supports muscle recovery", weight: "250 g", price: "₹950", qty: "1 jar", img: "https://m.media-amazon.com/images/I/81g+9HRxR6L._AC_UF1000,1000_QL80_.jpg" },
+{ name: "Fiber Supplement", desc: "Improves digestion", weight: "100 g", price: "₹300", qty: "1 jar", img: "https://m.media-amazon.com/images/I/61CN9sYDl4L._AC_UF1000,1000_QL80_.jpg" },
+{ name: "Magnesium Tablets", desc: "Reduces fatigue & cramps", weight: "60 tablets", price: "₹320", qty: "1 bottle", img: "https://m.media-amazon.com/images/I/51m-vesQHNL._AC_UF1000,1000_QL80_.jpg" },
+{ name: "Glucosamine Capsules", desc: "Supports joint health", weight: "60 capsules", price: "₹550", qty: "1 bottle", img: "https://rukminim2.flixcart.com/image/850/1000/xif0q/vitamin-supplement/6/e/u/60-glucosamine-chondroitin-msm-boswellia-vitamin-d3-k2-collagen-original-imagyqvwtem357nb.jpeg?q=90&crop=false" },
+{ name: "Green Tea Extract", desc: "Natural antioxidant boost", weight: "30 capsules", price: "₹250", qty: "1 bottle", img: "https://m.media-amazon.com/images/I/61QLMYrZXrL.jpg" },
+{ name: "Kids Multivitamin Gummies", desc: "Tasty vitamin support for kids", weight: "30 gummies", price: "₹280", qty: "1 bottle", img: "https://m.media-amazon.com/images/I/718-lVdvjvL._AC_UF1000,1000_QL80_.jpg" },
+{ name: "Collagen Powder", desc: "For skin and joints", weight: "200 g", price: "₹900", qty: "1 jar", img: "https://myproteinstore.in/cdn/shop/files/1_707ba37b-7543-465c-b807-8bb6b17fb3ac.jpg?crop=center&height=1200&v=1723028336&width=1200" },
+{ name: "Herbal Immunity Booster", desc: "Ayurvedic immunity support", weight: "200 ml", price: "₹180", qty: "1 bottle", img: "https://m.media-amazon.com/images/I/61AfZx8Rl7L.jpg" },
+
+    ];
+
+    const grid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+
+    function displayProducts(filteredProducts) {
+      grid.innerHTML = "";
+      filteredProducts.forEach(p => {
+        grid.innerHTML += `
+          <div class="product-card">
+            <img src="${p.img}" alt="${p.name}" />
+            <h3>${p.name}</h3>
+            <p>${p.desc}</p>
+            <p><strong>Weight:</strong> ${p.weight}</p>
+            <p><strong>Price:</strong> ${p.price}</p>
+            <p><strong>Quantity:</strong> ${p.qty}</p>
+            <button>Add to Cart</button>
+          </div>
+        `;
+      });
+    }
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.desc.toLowerCase().includes(query)
+      );
+      displayProducts(filtered);
+    });
+
+    // Initial display
+    displayProducts(products);
+  </script>
+      <footer style="background-color: #577594; color: white; padding: 40px 20px;background-image: url(https://siddharthpetro.com/wp-content/uploads/2019/09/Footer-Background-Image.png);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+          
+          <div style="flex: 1 1 300px;">
+            <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+            <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+              MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+              Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+            </p>
+          </div>
+          
+          <div style="flex: 1 1 300px;">
+            <h4 style="margin-bottom: 15px; text-align: center;">Created By</h4>
+            <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+             Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+              Jahnavi – Full Stack Developer & UI Designer<br>
+              Srikanth – Full Stack Developer & UI Designer<br>
+              Chaitanya – Full Stack Developer & UI Designer
+            </p>
+            <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+          </div>
+          
+        </div>
+      
+        <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
+      
+        <div style="text-align: center; font-size: 13px; color: white;">
+          &copy; 2025 MediFinder. All rights reserved.
+        </div>
+      </footer>
+</body>
+</html>
