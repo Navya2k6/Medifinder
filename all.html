@@ -4,30 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>All Medicines</title> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="cart.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f6f8;
+
+    h1 {
+      font-weight:700;
     }
-
-    header {
-  background-image: url(med.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: rgb(44, 16, 170);
-  padding: 1rem;
-  text-align: center;
-}
-h1{
-  font-weight:700;
-}
-#d{
-  color: rgb(1, 1, 0);
-}
-
+    #d {
+      color: rgb(1, 1, 0);
+    }
 
     .search-container {
       text-align: center;
@@ -35,13 +22,13 @@ h1{
     }
 
     .search-container input {
-    width: 50%;
-    padding: 10px;
-    border-radius: 20px; /* Adjust this value as needed */
-    border: 1px solid #ccc;
-    font-size: 16px;
-    border: 2px solid black;
-}
+      width: 50%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      border: 2px solid black;
+    }
 
     .medicine-grid {
       display: grid;
@@ -92,14 +79,77 @@ h1{
     .medicine-card button:hover {
       background-color: #45a049;
     }
+
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">MediFinder</div>
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="homepage.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Medicines ▾</a>
+                <div class="dropdown-content">
+                    <a href="all.html">All Medicines</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Healthcare ▾</a>
+                <div class="dropdown-content">
+                    <a href="personalcare.html">Personal Care</a>
+                    <a href="nutritioncare.html">Nutrition Care</a>
+                </div>
+            </li>
+            <li><a href="Diagnostics.html">Diagnostics</a></li>
+            <li><a href="img-two.html">Offers</a></li>
 
-<header>
-  <h1>MEDFINDER</h1>
-  <h5 id="d">Find all your medicines in one place..!</h5>
-</header>
+
+             <!-- Cart icon in nav -->
+             <li>
+              <a href="#" class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+              </a>
+            </li>
+            
+
+
+            <li id="loginNavItem"><a href="#" onclick="showLoginModal()">SignIn/Login</a></li>
+            <li id="accountNavItem" style="display: none;">
+                <a href="#">My Account ▾</a>
+                <div class="dropdown-content">
+                    <div class="user-info">
+                        <div class="user-name">User Name</div>
+                        <div class="user-email">user@example.com</div>
+                    </div>
+                    <a href="myprofile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="myorders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+                
+                    <div class="dropdown-divider"></div>
+                    <a href="accountsettings.html"><i class="fas fa-cog"></i> Account Settings</a>
+                    <a href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <div class="cart-modal" id="cartModal">
+    <div class="cart-header">
+      <div class="cart-title">Your Cart</div>
+      <div class="close-cart" onclick="toggleCart()">×</div>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be added here dynamically -->
+    </div>
+    <div class="cart-total">
+      Total: ₹<span id="cartTotal">0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  </div>
+
 
 <div class="search-container">
   <input type="text" id="searchInput" placeholder=" 🔍Search medicines...">
@@ -122,7 +172,7 @@ h1{
     <h3> Azithromycin</h3>
     <p style="font-size: 14px; color: #777;">    to treat certain bacterial infections</p> 
     <p>500mg | ₹10</p>
-    <button onclick="addToCart('Azithromycin',10,'azit.webp')">Add to Cart</button>
+    <button onclick="addToCart('Azithromycin',10,'azit.jpg')">Add to Cart</button>
   </div>
   <div class="medicine-card">
     <img src="rutoheal.jpg" alt="ruthoheal">
@@ -136,7 +186,7 @@ h1{
     <h3>   Qutan  250   </h3>
     <p style="font-size: 14px; color: #777;">Used for fever and pain relief</p> 
     <p>300mg | ₹20</p>
-    <button onclick="addToCart('Qutan 250 ',20,'qutan.jpg')">Add to Cart</button>
+    <button onclick="addToCart('Qutan 250',20,'qutan.jpg')">Add to Cart</button>
   </div>
 
   <div class="medicine-card">
@@ -166,7 +216,7 @@ h1{
     <h3>Patanjali Giloy Ghanvati</h3>
     <p style="font-size: 14px; color: #777;">    enhances immunity and reduces cough, fever, and cold</p> 
     <p>60 Tabs | ₹90</p>
-    <button onclick="addToCart('Patanjali Giloy Ghanvati',90,'patanjali.jpg')">Add to Cart</button>
+    <button onclick="addToCart('Patanjali Giloy Ghanvati',90,'patanjali.png')">Add to Cart</button>
   </div>
   <div class="medicine-card">
     <img src="itone.jpg" alt="itone">
@@ -190,7 +240,7 @@ h1{
     <h3>Zandu Balm</h3>
     <p style="font-size: 14px; color: #777;">Used to relieves from headache</p> 
     <p>8ml | ₹40</p>
-    <button onclick="addToCart('zandubalm',40,'zandubalm.webp')">Add to Cart</button>
+    <button onclick="addToCart('Zandu Balm',40,'zandubalm.webp')">Add to Cart</button>
   </div>
 
   <div class="medicine-card">
@@ -206,7 +256,7 @@ h1{
     <h3>omnigel</h3>
     <p style="font-size: 14px; color: #777;">relieves muscle pain</p> 
     <p>100 g | ₹130</p>
-    <button onclick="addToCart('omnigel',120,'omnigel.avif')">Add to Cart</button>
+    <button onclick="addToCart('omnigel',130,'omnigel.avif')">Add to Cart</button>
   </div>
 
   <div class="medicine-card">
@@ -224,39 +274,55 @@ h1{
     <p>20ml | ₹130</p>
     <button onclick="addToCart('Ceflox-D',130,'ceflox.webp')">Add to Cart</button>
   </div>
- 
-
 </div>
 
-<script>
-  const searchInput = document.getElementById("searchInput");
-  const medicineList = document.getElementById("medicineList");
 
-  // Create and append the "No results" message
-  const noResultsMessage = document.createElement("p");
-  noResultsMessage.innerText = "No results found.";
-  noResultsMessage.style.textAlign = "center";
-  noResultsMessage.style.fontSize = "1.2rem";
-  noResultsMessage.style.color = "red";
-  noResultsMessage.style.display = "none";
-  medicineList.parentNode.insertBefore(noResultsMessage, medicineList.nextSibling);
+<!-- ===== Footer ===== -->
+<footer style="background-color: rgb(32, 31, 31); color: white; padding: 40px 20px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; text-align: left;">
+    
+    <div style="flex: 1 1 300px;">
+      <h3 style="margin-bottom: 15px; text-align: center;">About MediFinder</h3>
+      <p style="font-size: 15px; line-height: 1.7; text-align: center;">
+        MediFinder is your one-stop platform for finding medicines near you with real-time availability, pricing, and directions. 
+        Whether you're looking for prescription drugs, healthcare services, or wellness products, we've got you covered.
+      </p>
+    </div>
+    
+    <div style="flex: 1 1 300px;">
+      <h4 style="margin-bottom: 15px; text-align: center;">Developed By</h4>
+      <p style="font-size: 15px; line-height: 1.7;text-align: center;">
+       Navya Priyadarshini – Full Stack Developer & UI Designer<br>
+        Jahnavi – Full Stack Developer & UI Designer<br>
+        Srikanth – Full Stack Developer & UI Designer<br>
+        Chaitanya – Full Stack Developer & UI Designer
+      </p>
+      <!-- <p style="margin-top: 10px; font-size: 14px;">Project built with 💙 using HTML, CSS & JavaScript</p> -->
+    </div>
+    
+  </div>
 
-  searchInput.addEventListener("input", function () {
-    const filter = searchInput.value.toLowerCase();
-    const cards = medicineList.getElementsByClassName("medicine-card");
+  <hr style="margin: 40px auto 20px; width: 90%; border-color: rgba(255,255,255,0.2);">
 
-    let visibleCount = 0;
+  <div style="text-align: center; font-size: 13px; color: #ccc;">
+    &copy; 2025 MediFinder. All rights reserved.
+  </div>
+</footer>
 
-    Array.from(cards).forEach(card => {
-      const name = card.querySelector("h3").innerText.toLowerCase();
-      const isVisible = name.includes(filter);
-      card.style.display = isVisible ? "block" : "none";
-      if (isVisible) visibleCount++;
-    });
 
-    noResultsMessage.style.display = visibleCount === 0 ? "block" : "none";
-  });
-</script>
 
+
+ <!-- LOGIN MODAL (place this at the bottom of body) -->
+ <div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <h2>Login</h2>
+    <label for="mobile">Enter your number:</label>
+    <input type="text" id="mobile" placeholder="Enter mobile number">
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
+</div>
+<script src="navbar.js"></script>
+<script src="cart.js"></script>
 </body>
 </html>
